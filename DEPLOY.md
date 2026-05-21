@@ -11,7 +11,7 @@ auto-deploy til produksjon på Vercel.
 
 1. Logg inn på https://vercel.com med GitHub-kontoen.
 2. Klikk **Add New → Project**.
-3. Importer `Robbis88/troasbygg`.
+3. Importer `Robbis88/Troasbygg`.
 4. **Framework Preset:** Next.js (auto-detektert).
 5. **Build/output:** la stå på default.
 6. **Environment Variables** — legg inn (Production + Preview + Development):
