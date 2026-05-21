@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Troas Bygg
 
-## Getting Started
+Premium webplattform og driftssystem for **Tømrer Ronny Osvaag AS** i Bergen.
 
-First, run the development server:
+**Domene:** [troasbygg.no](https://troasbygg.no)
+
+## Hva dette er
+
+Tre lag som deler én kodebase:
+
+1. **Offentlig nettside** — selger inn firmaet, genererer kundeforespørsler.
+2. **Internt driftssystem** (under utvikling) — CRM, tilbud, prosjekter, timer, flipp-økonomi.
+3. **Kundeportal** (senere) — kunder følger sitt prosjekt med bilder og fremdrift.
+
+## Stack
+
+- **Framework:** Next.js 16 (App Router, Cache Components / PPR)
+- **Språk:** TypeScript strict
+- **Styling:** Tailwind v4 + shadcn/ui
+- **Database:** Supabase (Postgres + RLS)
+- **Auth:** Supabase Auth
+- **Filer/bilder:** Supabase Storage
+- **E-post:** Resend
+- **AI:** Anthropic SDK (Fase 4)
+- **Hosting:** Vercel
+
+## Kom i gang
 
 ```bash
+npm install
+cp .env.local.example .env.local
+# Fyll inn Supabase + Resend-verdier i .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Åpne [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Mappestruktur
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/                        Next.js App Router
+  (public)/                 Offentlige sider med felles header/footer
+    page.tsx                Forside
+    om-oss/                 Om firmaet
+    tjenester/              9 tjenester (statisk innhold)
+    prosjekter/             DB-drevet med filter
+    anmeldelser/            DB-drevet
+    kontakt/                Skjema med Server Action + Resend
+  icon.svg                  Favicon (TR-mark)
+  opengraph-image.tsx       Dynamisk OG-image
+  sitemap.ts, robots.ts     SEO
+components/                 UI-komponenter
+  ui/                       shadcn-primitiver
+  logo.tsx                  TR-monogram + wordmark
+  site-header.tsx           Sticky header
+  site-footer.tsx
+  kontakt-form.tsx          Skjema-klient
+lib/
+  supabase/                 server, client, admin, public-klienter
+  queries/                  use cache-merkede DB-spørringer
+  actions/                  Server Actions
+  validators/               Zod-skjemaer
+  email/                    Resend-templates
+  services.ts               Statisk tjeneste-data
+  structured-data.ts        JSON-LD-byggere
+types/
+  supabase.ts               DB-typer (generert format)
+supabase/
+  migrations/               SQL-migreringer
+  README.md
+```
 
-## Learn More
+## Database
 
-To learn more about Next.js, take a look at the following resources:
+Skjema og RLS-policies ligger i `supabase/migrations/`. Se `supabase/README.md`
+for hvordan migreringer kjøres.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Se [DEPLOY.md](./DEPLOY.md).
 
-## Deploy on Vercel
+## Konvensjoner
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Norsk bokmål i UI, kommentarer og commits.
+- Server Components default. `'use client'` kun når nødvendig.
+- Server Actions for mutasjoner — ikke API routes.
+- RLS håndhever rolletilgang. Service-role-key brukes kun i Server Actions.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Lisens
+
+Privat — © Tømrer Ronny Osvaag AS.
