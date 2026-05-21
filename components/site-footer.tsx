@@ -1,0 +1,65 @@
+import Link from 'next/link'
+
+import { Logo } from '@/components/logo'
+import { primaryNav } from '@/lib/nav'
+
+export function SiteFooter() {
+  // Hardkodet — Cache Components tillater ikke `new Date()` ved prerender.
+  // Vi oppdaterer manuelt per år, eller bytter til en `use cache`-komponent senere.
+  const year = 2026
+
+  return (
+    <footer className="border-border bg-background border-t">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+        <div className="grid gap-16 md:grid-cols-[1.5fr_1fr_1fr] md:gap-12">
+          <div>
+            <Logo variant="stacked" className="items-start text-left" />
+            <p className="text-muted-foreground mt-6 max-w-sm text-sm leading-relaxed">
+              Tømrermester med fokus på kvalitet, presisjon og prosjektledelse. Nybygg,
+              totalrenovering, rehabilitering og oppussing.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-muted-foreground mb-4 font-mono text-xs tracking-[0.25em] uppercase">
+              Sider
+            </h3>
+            <ul className="space-y-3">
+              {primaryNav.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-foreground/80 hover:text-foreground text-sm transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-muted-foreground mb-4 font-mono text-xs tracking-[0.25em] uppercase">
+              Kontakt
+            </h3>
+            <ul className="text-foreground/80 space-y-3 text-sm">
+              <li>Tømrer Ronny Osvaag AS</li>
+              <li className="text-muted-foreground text-xs">
+                Telefon og e-post legges inn senere
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-border mt-16 flex flex-col gap-3 border-t pt-8 md:flex-row md:items-center md:justify-between">
+          <p className="text-muted-foreground text-xs">
+            © {year} Tømrer Ronny Osvaag AS. Alle rettigheter reservert.
+          </p>
+          <p className="text-muted-foreground font-mono text-[10px] tracking-[0.3em] uppercase">
+            Kvalitet i hvert prosjekt
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}
