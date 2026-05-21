@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
 
 import { getAllPublishedSlugs, getProjectBySlug } from '@/lib/queries/projects'
+import { jsonLdScriptProps, projectJsonLd } from '@/lib/structured-data'
 import type { Database } from '@/types/supabase'
 
 type Params = { slug: string }
@@ -78,6 +79,18 @@ export default async function ProsjektDetalj({ params }: { params: Promise<Param
 
   return (
     <>
+      <script
+        {...jsonLdScriptProps(
+          projectJsonLd({
+            title: project.title,
+            description: project.description,
+            slug: project.slug,
+            coverImageUrl: project.cover_image_url,
+            publishedAt: project.published_at,
+            address: project.address,
+          }),
+        )}
+      />
       {/* Cover-hero — fullbleed bilde med tittel-overlay */}
       <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden md:h-[80vh]">
         {project.cover_image_url ? (

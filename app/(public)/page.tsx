@@ -5,6 +5,7 @@ import { ArrowRight, Star } from 'lucide-react'
 import { getPublishedProjects } from '@/lib/queries/projects'
 import { getPublishedReviews } from '@/lib/queries/reviews'
 import { services } from '@/lib/services'
+import { generalContractorJsonLd, jsonLdScriptProps } from '@/lib/structured-data'
 import type { Database } from '@/types/supabase'
 
 const heroImage = 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=2400&q=80'
@@ -38,6 +39,14 @@ export default async function Home() {
 
   return (
     <>
+      <script
+        {...jsonLdScriptProps(
+          generalContractorJsonLd({
+            reviewCount: reviews.length,
+            ratingAverage: reviewAverage,
+          }),
+        )}
+      />
       <Hero />
       <TaglineSection />
       <ServicesStrip services={featuredServices} />
