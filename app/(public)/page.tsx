@@ -8,7 +8,7 @@ export default function Home() {
         <p className="text-muted-foreground max-w-xl text-base leading-relaxed md:text-lg">
           Nybygg, totalrenovering, rehabilitering og prosjektledelse.
           <br />
-          Tømrermester på Romerike med over 20 års erfaring.
+          Tømrermester i Bergen med over 20 års erfaring.
         </p>
         <p className="text-muted-foreground/60 mt-8 font-mono text-[10px] tracking-[0.3em] uppercase">
           Nettsiden er under utvikling
