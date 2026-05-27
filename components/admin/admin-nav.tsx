@@ -12,6 +12,7 @@ import type { UserRole } from '@/lib/auth'
 const navItems = [
   { href: '/admin', label: 'Oversikt' },
   { href: '/admin/prosjekter', label: 'Prosjekter' },
+  { href: '/admin/timer', label: 'Timer' },
   { href: '/admin/ansatte', label: 'Ansatte' },
 ]
 

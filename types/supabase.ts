@@ -228,6 +228,76 @@ export type Database = {
         }
         Relationships: []
       }
+      time_entries: {
+        Row: {
+          id: string
+          project_id: string
+          profile_id: string
+          work_date: string
+          hours: number
+          note: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          project_id: string
+          profile_id: string
+          work_date: string
+          hours: number
+          note?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          project_id?: string
+          profile_id?: string
+          work_date?: string
+          hours?: number
+          note?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'time_entries_project_id_fkey'
+            columns: ['project_id']
+            referencedRelation: 'projects'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'time_entries_profile_id_fkey'
+            columns: ['profile_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      payroll_settings: {
+        Row: {
+          id: number
+          employer_tax_pct: number
+          holiday_pay_pct: number
+          pension_pct: number
+          updated_at: string
+        }
+        Insert: {
+          id?: number
+          employer_tax_pct?: number
+          holiday_pay_pct?: number
+          pension_pct?: number
+          updated_at?: string
+        }
+        Update: {
+          id?: number
+          employer_tax_pct?: number
+          holiday_pay_pct?: number
+          pension_pct?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: { [key: string]: never }
     Functions: {
