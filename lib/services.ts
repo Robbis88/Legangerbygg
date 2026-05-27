@@ -3,8 +3,9 @@
  * denne fila og deploye. Slug-feltet brukes som URL-segment under
  * /tjenester/[slug].
  *
- * Når Robert har gjennomgått tekstene, justeres summary og description
- * her, og highlights kan utvides per tjeneste.
+ * Profil: oppussing og renovering sentralt i Bergen. Lasse tar tømrerarbeidet
+ * og full koordinering; våtrom, el, rør, mur og flis løses med faste,
+ * sertifiserte samarbeidspartnere. Ingen overdrevne påstander om egne papirer.
  */
 export type Service = {
   slug: string
@@ -21,140 +22,108 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: 'nybygg',
-    title: 'Nybygg',
-    kicker: 'Bygg fra grunnen',
+    slug: 'leiligheter',
+    title: 'Oppussing av leilighet',
+    kicker: 'Sentralt i Bergen',
     summary:
-      'Vi bygger boliger og næringsbygg fra første spadestikk til ferdig overlevering — med fokus på presisjon, materialvalg og varig kvalitet.',
+      'Helhetlig oppussing av leiligheter — fra friske overflater til full ombygging av planløsning, kjøkken og bad.',
     description:
-      'Når du skal bygge nytt, er hvert valg viktig. Vi tar ansvar for hele prosessen: planlegging, tegning, materialvalg, fundament, råbygg, innredning og finish. Vi jobber med erfarne arkitekter, ingeniører og leverandører for å levere et bygg som står seg over tid.',
+      'Leiligheter har sine egne premisser: bærevegger, sjakter, naboer og sameie. Vi tar hånd om alt fra demontering til ferdig listverk, koordinerer rørlegger og elektriker, og holder ryddig anlegg gjennom hele perioden. Du har én kontakt fra start til slutt — og en tømrer som faktisk svarer på telefonen.',
     highlights: [
-      'Enebolig, hytte og næringsbygg',
-      'Komplett prosjektledelse fra tegning til nøkkelferdig',
-      'Tett dialog underveis — du vet alltid hvor prosjektet står',
-      'Norske kvalitetsmaterialer og dokumenterte leverandører',
-      'Garanti i henhold til Bustadoppføringslova',
+      'Nytt kjøkken og oppgradert bad',
+      'Nye gulv, vegger, listverk og overflater',
+      'Mer lys, bedre flyt og smartere lagring',
+      'Vi rydder etter oss hver dag',
+    ],
+  },
+  {
+    slug: 'rekkehus',
+    title: 'Oppussing av rekkehus',
+    kicker: 'Bolig med naboer',
+    summary:
+      'Oppussing og oppgradering av rekkehus til moderne standard — uten å rokke ved det som deles med naboen.',
+    description:
+      'Rekkehus krever sin egen omtanke. Bygningskroppen deles med naboer, og lydskille og fellesvegger må håndteres riktig. Vi oppgraderer rom for rom eller hele boligen, og kjenner de praktiske utfordringene med å jobbe i tett bebyggelse. Vi holder dialogen ryddig med både deg og naboene.',
+    highlights: [
+      'Kjøkken, bad og oppholdsrom',
+      'Nye gulv, overflater og listverk',
+      'Hensyn til lydskille og fellesvegger',
+      'Erfaring med både eldre og nyere rekkehus',
+    ],
+  },
+  {
+    slug: 'eneboliger',
+    title: 'Renovering av enebolig',
+    kicker: 'Hele huset',
+    summary:
+      'Oppussing og renovering av eneboliger — ett rom om gangen eller hele huset, mens du bor der eller før innflytting.',
+    description:
+      'Vi pusser opp eneboliger med fokus på det som faktisk hever boligen: kjøkken og bad, lys og planløsning, gulv og overflater. Vi planlegger fremdriften slik at hverdagen din fungerer underveis, og koordinerer rørlegger, elektriker og flislegger der det trengs. Du vet alltid hvor prosjektet står.',
+    highlights: [
+      'Kjøkken, bad, gulv og overflater',
+      'Smartere planløsning og mer lys',
+      'Fremdrift tilpasset om du bor der underveis',
+      'Utvendig: kledning, tak og terrasse ved behov',
     ],
   },
   {
     slug: 'totalrenovering',
     title: 'Totalrenovering',
-    kicker: 'Helhetlig fornyelse',
+    kicker: 'Strippet og bygget opp',
     summary:
-      'En komplett gjenoppbygging av eksisterende bolig — vegger, gulv, tak, bad, kjøkken og tekniske anlegg.',
+      'En komplett gjenoppbygging av en eksisterende bolig — vegger, gulv, tak, bad, kjøkken og tekniske anlegg.',
     description:
-      'Totalrenovering er for deg som vil ha et helt nytt hjem uten å flytte. Vi river ned til bærende konstruksjoner og bygger opp på nytt med moderne løsninger for isolasjon, ventilasjon, varme og våtrom. Resultatet er en bolig som ser ut og fungerer som ny.',
+      'Totalrenovering er for deg som vil ha et helt nytt hjem uten å flytte. Vi river ned til bærende konstruksjon og bygger opp på nytt med moderne løsninger. Tømrerarbeidet og prosjektstyringen står vi for; våtrom, el og rør utføres av faste, sertifiserte samarbeidspartnere. Resultatet er en bolig som ser ut og fungerer som ny — med det opprinnelige preget bevart der du ønsker det.',
     highlights: [
       'Fra romplan til ferdig innredet',
       'Oppgradering av el, rør, ventilasjon og isolasjon',
-      'Våtromsfag med tilhørende sertifisering',
-      'Tett samarbeid med interiørarkitekt ved ønske',
-      'Klare milepæler og fast pris der det er mulig',
-    ],
-  },
-  {
-    slug: 'rehabilitering',
-    title: 'Rehabilitering',
-    kicker: 'Bevar karakteren',
-    summary:
-      'Skånsom oppgradering av eldre bygg — vi tar vare på det opprinnelige uttrykket samtidig som standarden løftes til dagens nivå.',
-    description:
-      'Eldre bygg har en karakter som er verdt å ta vare på. Vi rehabiliterer på en måte som respekterer historien: originale paneler, profiler og detaljer beholdes der det er mulig, mens skjult struktur, isolasjon og tekniske anlegg moderniseres. Vi har erfaring med både privatboliger og bevaringsverdige bygg.',
-    highlights: [
-      'Variert erfaring med trekonstruksjoner fra ulike epoker',
-      'Forsiktig demontering og gjenbruk av materialer',
-      'Energi- og fuktoppgradering uten å skade karakteren',
-      'Tett dialog med antikvariske myndigheter ved behov',
+      'Sertifisert våtromsarbeid via fast partner',
+      'Klare milepæler og forutsigbar økonomi',
     ],
   },
   {
     slug: 'flipp',
-    title: 'Flipp',
+    title: 'Oppussingsprosjekter & flipp',
     kicker: 'Verdi gjennom oppussing',
     summary:
-      'Strategisk oppussing av leiligheter, rekkehus og eneboliger for videresalg — med stram budsjettstyring og markedsforståelse.',
+      'Strategisk oppussing av leiligheter, rekkehus og eneboliger for videresalg — med stram budsjettstyring og blikk for hva som selger.',
     description:
-      'Vi gjør om en eldre eller slitt eiendom til en attraktiv bolig som selger raskt. Vårt fokus er på de tiltakene som faktisk øker markedsverdien: kjøkken og bad, lys og planløsning, gulv og overflater. Vi har egen erfaring med eiendomsinvestering og forstår både kostnadssiden og kjøpernes forventninger.',
+      'Lasse har kjøpt, pusset opp og solgt en rekke boliger selv, og vet hvilke tiltak som faktisk øker verdien: kjøkken og bad, lys og planløsning, gulv og overflater. Vi gjør om en sliten eiendom til en attraktiv bolig — raskt, med kontroll på budsjett og frister. Drømmer du om å kjøpe et oppussingsobjekt, tar vi deg trygt gjennom hele prosessen.',
     highlights: [
       'Budsjettstyring fra dag én',
       'Materialvalg som balanserer pris og inntrykk',
       'Rask gjennomføring med klare milepæler',
-      'Styling-vennlige planløsninger',
+      'Salgs- og styling-vennlige løsninger',
     ],
   },
   {
-    slug: 'rekkehus',
-    title: 'Rekkehus',
-    kicker: 'Spesialist på tett-bebyggelse',
+    slug: 'bad-kjokken',
+    title: 'Bad & kjøkken',
+    kicker: 'Med sertifiserte partnere',
     summary:
-      'Oppussing og rehabilitering av rekkehus med spesiell hensyn til lydforhold, brannskiller og naboforhold.',
+      'Nye bad og kjøkken — vi står for tømrerarbeidet og koordinerer sertifisert rørlegger og flislegger.',
     description:
-      'Rekkehus krever sin egen kompetanse. Bygningskroppen deles med naboer, og både lydisolasjon, brannskillevegger og fellesarealer må håndteres riktig. Vi har bygget om mange rekkehus og kjenner både de tekniske kravene og de praktiske utfordringene med å jobbe i tett bebyggelse.',
+      'Bad og kjøkken er rommene som løfter hele boligen mest. Vi tar hånd om tømrerarbeid, innredning, montering og listverk, og koordinerer faste samarbeidspartnere for våtromsmembran, rør, fliser og el. Du forholder deg til oss — vi sørger for at fagene henger sammen og at det blir gjort etter forskriftene.',
     highlights: [
-      'Lydisolering mellom boenheter',
-      'Brannskiller i henhold til TEK17',
-      'Hensyn til nabovarsler og uteareal',
-      'Erfaring med både eldre og nyere rekkehus',
-    ],
-  },
-  {
-    slug: 'leiligheter',
-    title: 'Leiligheter',
-    kicker: 'Fornyelse innenfor rammene',
-    summary:
-      'Renovering av leiligheter med fokus på lys, lagring og smarte løsninger på begrenset plass.',
-    description:
-      'En leilighet har sine egne premisser — bærende vegger, sjakter, fellesinstallasjoner. Vi finner løsninger som gir mer lys, bedre flyt og smartere lagring uten å bryte byggets struktur. Vi tar oss av søknader til sameiet og forholder oss til borettslag og styrer.',
-    highlights: [
-      'Åpne planløsninger der det er forsvarlig',
-      'Skreddersydd innredning og garderober',
-      'Bad og kjøkken med moderne standard',
-      'Søknadshjelp mot sameie og kommune',
-    ],
-  },
-  {
-    slug: 'prosjektledelse',
-    title: 'Prosjektledelse',
-    kicker: 'Én kontakt for hele prosjektet',
-    summary:
-      'Vi styrer entreprenører, leverandører, søknader og fremdrift slik at du har én kontakt for hele byggeprosjektet.',
-    description:
-      'For større prosjekter med flere fag tar vi rollen som hovedansvarlig. Vi koordinerer rørlegger, elektriker, malere og andre underentreprenører, holder fremdrift og økonomi i orden, og er din motpart fra første møte til ferdigbefaring. Du slipper å løpe etter ti ulike telefoner.',
-    highlights: [
-      'Helhetlig fremdrifts- og kostnadsstyring',
-      'Søknadsarbeid mot kommune og fagmyndigheter',
-      'Underentreprenører er kvalitetssikret og kjent for oss',
-      'Jevnlig rapportering med bilder og status',
-    ],
-  },
-  {
-    slug: 'innvendig',
-    title: 'Innvendig oppussing',
-    kicker: 'Rom for rom',
-    summary:
-      'Bad, kjøkken, stue, soverom — vi pusser opp innvendig med fokus på materialvalg, detaljer og tekniske løsninger.',
-    description:
-      'Skal du pusse opp ett eller flere rom? Vi tar hånd om alt fra demontering til ferdig listverk: rør og el, gulv og fliser, vegger og himling, innredning og belysning. Vi koordinerer fag og holder ryddig anlegg gjennom hele perioden.',
-    highlights: [
-      'Våtrom med sertifisert utførelse',
       'Kjøkken — fra Ikea til skreddersydd',
-      'Skjult belysning og tekniske detaljer',
+      'Bad med sertifisert våtromsutførelse via partner',
+      'Skjult belysning og gjennomtenkte detaljer',
       'Materialer som tåler bruk over tid',
     ],
   },
   {
-    slug: 'utvendig',
-    title: 'Utvendig arbeid',
-    kicker: 'Fasade, tak, terrasse',
+    slug: 'tomrerarbeid',
+    title: 'Tømrerarbeid & andre oppdrag',
+    kicker: 'Faget fra A til Å',
     summary:
-      'Utvendige tømrer- og overflatearbeider: kledning, tak, terrasser, vinduer og innganger.',
+      'Vanlig tømrerarbeid utover oppussing — kledning, tak, terrasser, vinduer, dører, vegger og listverk.',
     description:
-      'Utvendig arbeid handler om både estetikk og bygningskropp — riktig materialvalg, riktig dampåpning, riktig dekking. Vi tar hånd om kledning, tak, terrasser, vinduer, dører og innganger med en utførelse som står seg i norsk klima.',
+      'Trenger du en tømrer til en avgrenset jobb? Vi tar de fleste oppdrag innenfor faget: utvendig kledning og tak, terrasser og rekkverk, utskifting av vinduer og dører, nye vegger, himlinger og listverk. Ryddig utført, til avtalt tid, med en utførelse som står seg i bergensk klima.',
     highlights: [
-      'Trekledning, plater og kombinasjoner',
-      'Tak: nedrigging, undertak, dekke',
-      'Terrasser og altanrekkverk i tre eller komposit',
+      'Trekledning, tak og terrasser',
       'Vinduer og dører — komplett utskifting',
+      'Vegger, himling og listverk',
+      'Mindre, avgrensede oppdrag tas også',
     ],
   },
 ]

@@ -24,7 +24,7 @@ const typeLabels: Record<Database['public']['Enums']['project_type'], string> = 
   annet: 'Annet',
 }
 
-const featuredServiceSlugs = ['nybygg', 'totalrenovering', 'rehabilitering', 'prosjektledelse']
+const featuredServiceSlugs = ['leiligheter', 'totalrenovering', 'flipp', 'bad-kjokken']
 
 export default async function Home() {
   const [projects, reviews] = await Promise.all([
@@ -75,13 +75,13 @@ function Hero() {
           Leganger Bygg AS — Bergen
         </p>
         <h1 className="mt-8 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]">
-          Vi bygger det
+          Gammelt hus.
           <br />
-          som skal stå.
+          Nytt liv.
         </h1>
         <p className="mt-8 max-w-xl text-base leading-relaxed opacity-85 md:text-lg">
-          Premium tømrerfag på Vestlandet — nybygg, totalrenovering, rehabilitering og
-          prosjektledelse. Du har én kontakt, og du vet alltid hvor prosjektet står.
+          Oppussing og renovering av leiligheter, rekkehus og eneboliger sentralt i Bergen. Du
+          har én kontakt, full kontroll, og en tømrer som tar jobben fra A til Å.
         </p>
         <div className="mt-12 flex flex-col gap-3 sm:flex-row">
           <Link
@@ -118,9 +118,9 @@ function TaglineSection() {
             Færre, bedre prosjekter. Vi tar ikke flere oppdrag enn vi kan følge tett selv.
           </p>
           <p className="text-muted-foreground max-w-2xl text-base leading-relaxed md:text-lg">
-            Ronny er involvert i hvert eneste prosjekt. Underentreprenører er folk vi kjenner og
-            kan stå inne for. Materialvalg, fremdrift og dialog holder samme standard fra første
-            befaring til siste sluttbefaring.
+            Lasse er involvert i hvert eneste prosjekt. Det han ikke gjør selv, koordinerer han —
+            rørlegger, elektriker og flislegger er faste folk han kan stå inne for. Samme standard
+            fra første befaring til siste finish.
           </p>
           <Link
             href="/om-oss"

@@ -23,6 +23,20 @@ npx supabase db push
 2. Lim inn innholdet i migrasjonsfilen
 3. Kjør
 
+## Seed-data (demo)
+
+Demo-prosjekter og -anmeldelser ligger i `migrations/20260521120200_seed_demo.sql`.
+
+**Ikke lim seed-SQL inn i SQL-editoren via `clip.exe`** — det har tidligere
+ødelagt æøå (UTF-8 ble tolket som DOS-kodeside og lagret som mojibake i
+databasen). Bruk i stedet skriptet, som skriver rent over HTTP med service-role:
+
+```bash
+node scripts/reseed-content.mjs
+```
+
+Det sletter eksisterende prosjekter/bilder/anmeldelser og setter inn på nytt.
+
 ## Regenerer TypeScript-typer
 
 Etter at skjemaet er endret:
@@ -35,7 +49,7 @@ npx supabase gen types typescript --project-id dwdllwrinqdobywdhzgm > types/supa
 
 Tabellen `profiles` har et `role`-felt med fire verdier:
 
-- `eier` — full tilgang (Ronny, Robert)
+- `eier` — full tilgang (Lasse, Robert)
 - `ansatt` — egne timer, prosjektvisning, ingen økonomi
 - `regnskap` — alle timer og økonomi, ingen redigering av kunder
 - `visning` — read-only på alt

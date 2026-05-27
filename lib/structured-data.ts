@@ -41,7 +41,7 @@ export function generalContractorJsonLd({ reviewCount = 0, ratingAverage = 0 }: 
     url: SITE_URL,
     image: `${SITE_URL}/icon.svg`,
     description:
-      'Leganger Bygg AS leverer nybygg, totalrenovering, rehabilitering og prosjektledelse i Bergen — med fokus på kvalitet, presisjon og varig håndverk.',
+      'Leganger Bygg AS pusser opp og renoverer leiligheter, rekkehus og eneboliger sentralt i Bergen — med full kontroll fra A til Å og faste, sertifiserte samarbeidspartnere.',
     areaServed: { '@type': 'City', name: 'Bergen' },
     address: {
       '@type': 'PostalAddress',
@@ -49,14 +49,13 @@ export function generalContractorJsonLd({ reviewCount = 0, ratingAverage = 0 }: 
       addressCountry: 'NO',
     },
     knowsAbout: [
-      'Nybygg',
+      'Oppussing av leilighet',
+      'Oppussing av rekkehus',
+      'Renovering av enebolig',
       'Totalrenovering',
-      'Rehabilitering',
-      'Prosjektledelse',
-      'Flipp',
-      'Moské-rehabilitering',
-      'Rekkehus',
-      'Våtromsfag',
+      'Flipp og oppussingsprosjekter',
+      'Bad og kjøkken',
+      'Tømrerarbeid',
     ],
   }
 

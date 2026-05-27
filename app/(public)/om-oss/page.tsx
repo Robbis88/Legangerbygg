@@ -5,33 +5,33 @@ import { ArrowRight } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Om oss',
   description:
-    'Leganger Bygg AS — håndverk som tåler tid og bruk. Vi tar ansvar for hele prosjektet, fra første tegning til ferdig overlevering.',
+    'Leganger Bygg AS er Lasse — en ung tømrer med stor pasjon for oppussing og renovering sentralt i Bergen. Full kontroll fra A til Å, med faste sertifiserte samarbeidspartnere.',
 }
 
 const values = [
   {
-    label: 'Kvalitet',
-    body: 'Vi gir aldri etter på materialvalg eller utførelse. Det du ikke ser, er like nøye gjort som det du ser.',
+    label: 'Pasjon',
+    body: 'Vi gjør dette fordi vi elsker det. Det merkes i hver detalj — også de du aldri kommer til å se.',
   },
   {
-    label: 'Punktlighet',
-    body: 'Tidsfrister er tidsfrister. Du vet alltid når neste milepæl er, og du blir varslet før noe sklir.',
+    label: 'Full kontroll',
+    body: 'Én som styrer alt: fag, fremdrift, økonomi og samarbeidspartnere. Du forholder deg bare til oss.',
   },
   {
-    label: 'Erfaring',
-    body: 'Over 20 år i tømrerfaget og hundrevis av prosjekter — fra eneboliger i Bergen til moské-prosjekter og næringsbygg.',
+    label: 'Ærlighet',
+    body: 'Vi lover bare det vi kan holde. Er noe utenfor vårt felt, henter vi inn sertifiserte folk vi stoler på.',
   },
   {
-    label: 'Trygghet',
-    body: 'Skikkelig forsikret, sentralt godkjent og forpliktet til Bustadoppføringslova. Du vet hva du får.',
+    label: 'Lokalt',
+    body: 'Sentralt i Bergen. Vi kjenner bygårdene, sameiene og hvordan de gamle husene her er bygget.',
   },
 ]
 
-const certifications = [
-  'Sentral godkjenning som tømrer',
-  'Våtromsfag — sertifisering for utførelse',
-  'Bustadoppføringslova-konformt kontraktsverk',
-  'Yrkesskade- og ansvarsforsikring',
+const fagOgTrygghet = [
+  'Fagbrev som tømrer',
+  'Ansvars- og yrkesskadeforsikring',
+  'Sertifisert våtromsarbeid via fast partner',
+  'Faste samarbeidspartnere: rørlegger, elektriker, murer og flislegger',
 ]
 
 export default function OmOssPage() {
@@ -43,13 +43,13 @@ export default function OmOssPage() {
             Om oss
           </p>
           <h1 className="mt-6 text-5xl font-semibold tracking-tight md:text-7xl">
-            Håndverk som
+            Oppussing med
             <br />
-            tåler tid og bruk.
+            full kontroll.
           </h1>
           <p className="text-muted-foreground mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Leganger Bygg AS ble grunnlagt med ett mål: å levere bygg du fortsatt er
-            fornøyd med ti år senere. Vi tar ikke flere prosjekter enn vi kan følge tett selv.
+            Leganger Bygg AS er et lite firma med mye pasjon. Vi pusser opp og renoverer
+            leiligheter, rekkehus og eneboliger sentralt i Bergen — og tar jobben fra A til Å.
           </p>
         </div>
       </section>
@@ -63,18 +63,17 @@ export default function OmOssPage() {
           </div>
           <div className="space-y-6 text-lg leading-relaxed text-foreground/90 md:text-xl">
             <p>
-              Vi tror på færre, bedre prosjekter. Det betyr at Ronny selv er involvert i hvert
-              eneste oppdrag — fra første befaring til siste sluttbefaring. Du har én kontakt, én
-              som vet hva som skjer og én som svarer på telefonen.
+              Lasse er med på hvert eneste oppdrag — fra første befaring til siste finish. Du har
+              én kontakt som vet nøyaktig hva som skjer, og som svarer på telefonen.
             </p>
             <p>
-              Vi jobber metodisk. Tegninger gjennomgås i detalj, materialer planlegges og bestilles
-              i god tid, og vi holder ryddig anlegg gjennom hele perioden. Underentreprenører er
-              folk vi har jobbet med før og kan stå inne for.
+              Det han ikke gjør selv, koordinerer han. Rørlegger, elektriker, murer og flislegger
+              er faste folk han kan stå inne for, og våtrom utføres med sertifisert utførelse. Du
+              slipper å løpe etter ti ulike telefoner.
             </p>
             <p>
-              Vi liker komplekse prosjekter: gamle hus med karakter, moské-bygg med spesielle krav,
-              flipp-prosjekter med stramt budsjett. Det er der erfaring gjør størst forskjell.
+              Drømmer du om å kjøpe en gammel bolig og sette ditt eget preg på den? Da er dette
+              tømreren som tar deg trygt gjennom hele prosessen.
             </p>
           </div>
         </div>
@@ -103,7 +102,7 @@ export default function OmOssPage() {
         <div className="mx-auto grid max-w-5xl gap-16 md:grid-cols-[1fr_1.4fr] md:gap-20">
           <div>
             <h2 className="text-muted-foreground mb-6 font-mono text-xs tracking-[0.3em] uppercase">
-              Ronny
+              Lasse
             </h2>
           </div>
           <div className="space-y-6">
@@ -114,12 +113,18 @@ export default function OmOssPage() {
             </div>
             <div className="space-y-4 text-base leading-relaxed text-foreground/90 md:text-lg">
               <p>
-                Ronny Osvaag er tømrermester og daglig leder. Han har vært i bransjen i over to
-                tiår og har bygget alt fra eneboliger og hytter til moské-prosjekter og
-                rekkehusrenoveringer.
+                Lasse er tømrer og grunnlegger av Leganger Bygg AS. 25 år gammel, fem år i faget —
+                og en uvanlig bratt læringskurve: han har kjøpt, totalrenovert og solgt en lang
+                rekke boliger på kort tid.
+              </p>
+              <p>
+                Det har gjort ham til en spesialist på oppussing av leiligheter, rekkehus og
+                eneboliger. Han tar jobben fra A til Å og har full kontroll på fremdrift og fag.
+                Det han ikke gjør selv — våtrom, el, rør, mur og flis — løser han gjennom faste,
+                sertifiserte samarbeidspartnere.
               </p>
               <p className="text-muted-foreground">
-                Full biografi og portrett kommer.
+                Med på laget har han en lærling. Lite firma, mye pasjon.
               </p>
             </div>
           </div>
@@ -130,17 +135,17 @@ export default function OmOssPage() {
         <div className="mx-auto grid max-w-5xl gap-16 md:grid-cols-[1fr_1.4fr] md:gap-20">
           <div>
             <h2 className="text-muted-foreground mb-6 font-mono text-xs tracking-[0.3em] uppercase">
-              Sertifiseringer
+              Fag & trygghet
             </h2>
           </div>
           <ul className="space-y-4">
-            {certifications.map((c) => (
+            {fagOgTrygghet.map((c) => (
               <li
                 key={c}
-                className="border-border flex items-center justify-between border-b py-4 text-base md:text-lg"
+                className="border-border flex items-center justify-between gap-6 border-b py-4 text-base md:text-lg"
               >
                 <span>{c}</span>
-                <span className="text-muted-foreground font-mono text-[10px] tracking-[0.3em] uppercase">
+                <span className="text-muted-foreground font-mono text-[10px] tracking-[0.3em] uppercase shrink-0">
                   Aktiv
                 </span>
               </li>

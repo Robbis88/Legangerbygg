@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s — Leganger Bygg AS',
   },
   description:
-    'Leganger Bygg AS leverer nybygg, totalrenovering og prosjektledelse med kompromissløs kvalitet. Kvalitet i hvert prosjekt.',
+    'Leganger Bygg AS pusser opp og renoverer leiligheter, rekkehus og eneboliger sentralt i Bergen. Full kontroll fra A til Å. Kvalitet i hvert prosjekt.',
   applicationName: 'Leganger Bygg AS',
   authors: [{ name: 'Leganger Bygg AS' }],
   openGraph: {

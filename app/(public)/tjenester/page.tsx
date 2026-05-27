@@ -7,7 +7,7 @@ import { services } from '@/lib/services'
 export const metadata: Metadata = {
   title: 'Tjenester',
   description:
-    'Nybygg, totalrenovering, rehabilitering, flipp og prosjektledelse. Leganger Bygg AS leverer kvalitet i hvert prosjekt.',
+    'Oppussing og renovering av leiligheter, rekkehus og eneboliger, totalrenovering, flipp og tømrerarbeid. Leganger Bygg AS — kvalitet i hvert prosjekt.',
 }
 
 export default function TjenesterPage() {
@@ -19,13 +19,14 @@ export default function TjenesterPage() {
             Tjenester
           </p>
           <h1 className="mt-6 text-5xl font-semibold tracking-tight md:text-7xl">
-            Vi bygger det
+            Faget fra
             <br />
-            som skal stå.
+            A til Å.
           </h1>
           <p className="text-muted-foreground mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Fra nybygg og totalrenovering til rehabilitering og prosjektledelse — vi tar oss av
-            tømrerfaget med presisjon, dokumentert kvalitet og tett dialog gjennom hele prosessen.
+            Oppussing og renovering av leiligheter, rekkehus og eneboliger — pluss vanlig
+            tømrerarbeid. Vi tar tømreroppgavene selv og koordinerer sertifiserte partnere på
+            våtrom, rør, el, mur og flis.
           </p>
         </div>
       </section>

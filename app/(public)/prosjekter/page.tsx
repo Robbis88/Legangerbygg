@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils'
 export const metadata: Metadata = {
   title: 'Prosjekter',
   description:
-    'Utvalg av prosjekter Leganger Bygg AS har levert — nybygg, totalrenoveringer, flipp og moské-prosjekter i Bergen.',
+    'Utvalg av prosjekter Leganger Bygg AS har levert — oppussing av leiligheter, totalrenoveringer, flipp og rekkehus sentralt i Bergen.',
 }
 
 type SearchParams = { [key: string]: string | string[] | undefined }
@@ -31,10 +31,10 @@ const filters: FilterDef[] = [
     toFilter: () => ({}),
   },
   {
-    label: 'Nybygg',
-    href: '/prosjekter?type=nybygg',
-    matches: (p) => p.type === 'nybygg',
-    toFilter: () => ({ type: 'nybygg' }),
+    label: 'Leilighet',
+    href: '/prosjekter?type=leilighet',
+    matches: (p) => p.type === 'leilighet',
+    toFilter: () => ({ type: 'leilighet' }),
   },
   {
     label: 'Totalrenovering',
@@ -47,12 +47,6 @@ const filters: FilterDef[] = [
     href: '/prosjekter?type=flipp',
     matches: (p) => p.type === 'flipp',
     toFilter: () => ({ type: 'flipp' }),
-  },
-  {
-    label: 'Moské',
-    href: '/prosjekter?type=moske',
-    matches: (p) => p.type === 'moske',
-    toFilter: () => ({ type: 'moske' }),
   },
   {
     label: 'Rekkehus',
@@ -111,8 +105,8 @@ export default function ProsjekterPage({
             Det vi har bygget.
           </h1>
           <p className="text-muted-foreground mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Et utvalg gjennomførte og pågående prosjekter — fra nybygg og totalrenoveringer til
-            flipp-prosjekter og moské-rehabiliteringer.
+            Et utvalg gjennomførte og pågående prosjekter — oppussing av leiligheter, rekkehus og
+            eneboliger, totalrenoveringer og flipp sentralt i Bergen.
           </p>
         </div>
       </section>
