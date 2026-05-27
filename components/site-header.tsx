@@ -44,7 +44,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:h-20">
         <Link
           href="/"
-          aria-label="Troas Bygg — til forsiden"
+          aria-label="Leganger Bygg AS — til forsiden"
           className="focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         >
           <Logo variant="compact" />

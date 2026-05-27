@@ -1,12 +1,12 @@
 /**
- * Schema.org JSON-LD-byggere for Troas Bygg. Sendes inn i sider via
+ * Schema.org JSON-LD-byggere for Leganger Bygg AS. Sendes inn i sider via
  * <script type="application/ld+json"> for å forbedre søkemotor-presentasjon
  * og rich-snippets (rating, lokasjon, lenker).
  */
 
 export const SITE_URL = 'https://troasbygg.no'
-const LEGAL_NAME = 'Tømrer Ronny Osvaag AS'
-const BRAND_NAME = 'Troas Bygg'
+const LEGAL_NAME = 'Leganger Bygg AS'
+const BRAND_NAME = 'Leganger Bygg AS'
 
 export function organizationJsonLd() {
   return {
@@ -41,7 +41,7 @@ export function generalContractorJsonLd({ reviewCount = 0, ratingAverage = 0 }: 
     url: SITE_URL,
     image: `${SITE_URL}/icon.svg`,
     description:
-      'Tømrer Ronny Osvaag AS leverer nybygg, totalrenovering, rehabilitering og prosjektledelse i Bergen — med fokus på kvalitet, presisjon og varig håndverk.',
+      'Leganger Bygg AS leverer nybygg, totalrenovering, rehabilitering og prosjektledelse i Bergen — med fokus på kvalitet, presisjon og varig håndverk.',
     areaServed: { '@type': 'City', name: 'Bergen' },
     address: {
       '@type': 'PostalAddress',

@@ -72,7 +72,7 @@ function Hero() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/40 via-black/30 to-black/80" />
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-start px-6 pt-32 pb-20 md:pt-44 md:pb-32">
         <p className="font-mono text-[11px] tracking-[0.3em] uppercase opacity-80">
-          Tømrer Ronny Osvaag AS — Bergen
+          Leganger Bygg AS — Bergen
         </p>
         <h1 className="mt-8 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]">
           Vi bygger det

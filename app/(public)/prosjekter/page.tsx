@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils'
 export const metadata: Metadata = {
   title: 'Prosjekter',
   description:
-    'Utvalg av prosjekter Tømrer Ronny Osvaag AS har levert — nybygg, totalrenoveringer, flipp og moské-prosjekter i Bergen.',
+    'Utvalg av prosjekter Leganger Bygg AS har levert — nybygg, totalrenoveringer, flipp og moské-prosjekter i Bergen.',
 }
 
 type SearchParams = { [key: string]: string | string[] | undefined }

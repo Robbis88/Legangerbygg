@@ -5,7 +5,7 @@ import { KontaktForm } from '@/components/kontakt-form'
 export const metadata: Metadata = {
   title: 'Kontakt',
   description:
-    'Ta kontakt med Tømrer Ronny Osvaag AS — fortell om prosjektet ditt, så tar vi kontakt innen én virkedag.',
+    'Ta kontakt med Leganger Bygg AS — fortell om prosjektet ditt, så tar vi kontakt innen én virkedag.',
 }
 
 export default function KontaktPage() {
@@ -40,7 +40,7 @@ export default function KontaktPage() {
               <ul className="space-y-3 text-base">
                 <li className="flex flex-col">
                   <span className="text-muted-foreground text-xs">Firma</span>
-                  <span>Tømrer Ronny Osvaag AS</span>
+                  <span>Leganger Bygg AS</span>
                 </li>
                 <li className="flex flex-col">
                   <span className="text-muted-foreground text-xs">Lokasjon</span>

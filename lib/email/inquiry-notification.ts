@@ -48,7 +48,7 @@ export function renderInquiryNotification({
           <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border:1px solid #e5e5e5;border-radius:16px;overflow:hidden;">
             <tr>
               <td style="padding:32px 32px 16px;">
-                <p style="margin:0 0 8px;font-size:11px;font-family:monospace;letter-spacing:0.25em;text-transform:uppercase;color:#8b8b8b;">Troas Bygg — ny henvendelse</p>
+                <p style="margin:0 0 8px;font-size:11px;font-family:monospace;letter-spacing:0.25em;text-transform:uppercase;color:#8b8b8b;">Leganger Bygg AS — ny henvendelse</p>
                 <h1 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-0.01em;">${escapeHtml(inquiry.name)}</h1>
                 <p style="margin:8px 0 0;font-size:13px;color:#8b8b8b;">Mottatt ${escapeHtml(receivedAt)}</p>
               </td>

@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'nodejs'
 
-export const alt = 'Troas Bygg — Tømrer Ronny Osvaag AS'
+export const alt = 'Leganger Bygg AS'
 export const size = {
   width: 1200,
   height: 630,
@@ -36,7 +36,7 @@ export default async function OgImage() {
               margin: 0,
             }}
           >
-            Tømrer Ronny Osvaag AS — Bergen
+            Leganger Bygg AS — Bergen
           </p>
         </div>
 
@@ -44,14 +44,14 @@ export default async function OgImage() {
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <h1
               style={{
-                fontSize: 120,
+                fontSize: 84,
                 fontWeight: 600,
                 letterSpacing: '-0.02em',
                 lineHeight: 1,
                 margin: 0,
               }}
             >
-              Troas Bygg
+              Leganger Bygg AS
             </h1>
             <p
               style={{
@@ -66,26 +66,21 @@ export default async function OgImage() {
             </p>
           </div>
 
-          {/* TR-mark inline SVG */}
-          <svg
-            width="180"
-            height="180"
-            viewBox="360 110 360 240"
-            fill="none"
-            stroke="#ffffff"
-            strokeWidth={20}
-            strokeLinecap="square"
-            strokeLinejoin="miter"
-          >
-            <path d="M370 120 L560 120" />
-            <path d="M465 120 L465 260" />
-            <path d="M560 120 L560 280" />
-            <path d="M560 120 Q700 120 700 190 Q700 250 620 250" />
-            <path d="M620 250 L710 340" />
-            <path d="M410 320 L535 220 L660 320" />
-            <rect x="515" y="300" width="40" height="40" />
-            <line x1="535" y1="300" x2="535" y2="340" />
-            <line x1="515" y1="320" x2="555" y2="320" />
+          {/* Leganger-merke inline SVG (hvitt på mørk bakgrunn) */}
+          <svg width="200" height="200" viewBox="50 10 120 120" fill="none" strokeWidth={6}>
+            <path d="M 70 40 L 70 110 L 110 110" stroke="#ffffff" strokeLinecap="square" />
+            <path
+              d="M 60 55 L 95 30 L 130 55"
+              stroke="#C9842B"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M 120 40 L 120 110 L 145 110 Q 160 110 160 95 Q 160 80 145 80 L 120 80 M 145 80 Q 158 80 158 65 Q 158 50 145 50 L 120 50"
+              stroke="#ffffff"
+              strokeLinecap="square"
+              strokeLinejoin="miter"
+            />
           </svg>
         </div>
       </div>

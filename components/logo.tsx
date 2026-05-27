@@ -9,19 +9,27 @@ type LogoProps = {
   title?: string
 }
 
+/** Merkefarger fra logo-designet. */
+const BRAND_GREEN = '#2C3E2D'
+const BRAND_OCHRE = '#C9842B'
+
+/** Serif-wordmarken — matcher teksten i logo-SVG-en. */
+const WORDMARK_FONT = 'Georgia, "Times New Roman", serif'
+
 /**
- * Troas Bygg-logo.
+ * Leganger Bygg AS-logo.
  *
  * Varianter:
- * - mark: kun TR-monogrammet med tak (favicon-klar, kvadratisk)
- * - compact: mark + "TROAS BYGG" inline (header)
- * - stacked: mark + "TØMRER / RONNY OSVAAG AS" stablet (footer, om-sider)
+ * - mark: kun L+tak+B-monogrammet (favicon-klar, kvadratisk)
+ * - compact: mark + "LEGANGER BYGG AS" inline (header)
+ * - stacked: mark over wordmark (footer, om-sider)
  * - full: stacked + tagline "KVALITET I HVERT PROSJEKT" (hero, splash)
  *
- * Marken bruker currentColor — sett tekstfarge på containeren for å fargelegge.
+ * Monogrammet har faste merkefarger — overstyr via <Logomark primary/accent>
+ * for f.eks. et hvitt merke på mørk bakgrunn.
  */
 export function Logo({ variant = 'compact', className, title }: LogoProps) {
-  const a11yTitle = title ?? 'Troas Bygg — Tømrer Ronny Osvaag AS'
+  const a11yTitle = title ?? 'Leganger Bygg AS'
 
   if (variant === 'mark') {
     return <Logomark className={className} title={a11yTitle} />
@@ -30,11 +38,16 @@ export function Logo({ variant = 'compact', className, title }: LogoProps) {
   if (variant === 'compact') {
     return (
       <span
-        className={cn('inline-flex items-center gap-3 text-foreground', className)}
+        className={cn('inline-flex items-center gap-3', className)}
         aria-label={a11yTitle}
       >
-        <Logomark className="h-8 w-8 shrink-0" decorative />
-        <span className="text-base font-semibold tracking-[0.2em] uppercase">Troas Bygg</span>
+        <Logomark className="h-9 w-9 shrink-0" decorative />
+        <span
+          className="text-base font-bold tracking-[0.18em] uppercase"
+          style={{ fontFamily: WORDMARK_FONT, color: BRAND_GREEN }}
+        >
+          Leganger Bygg AS
+        </span>
       </span>
     )
   }
@@ -42,23 +55,23 @@ export function Logo({ variant = 'compact', className, title }: LogoProps) {
   // 'stacked' og 'full' deler oppbygning
   return (
     <span
-      className={cn('inline-flex flex-col items-center gap-4 text-foreground', className)}
+      className={cn('inline-flex flex-col items-center gap-4', className)}
       aria-label={a11yTitle}
     >
-      <Logomark className="h-16 w-auto" decorative />
-      <span className="flex flex-col items-center leading-none">
-        <span className="text-xs font-medium tracking-[0.4em] uppercase">Tømrer</span>
-        <span className="mt-2 text-2xl font-semibold tracking-[0.08em] uppercase md:text-3xl">
-          Ronny Osvaag AS
-        </span>
-        {variant === 'full' ? (
-          <span className="text-muted-foreground mt-4 flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase">
-            <span className="bg-current h-px w-12 opacity-40" aria-hidden />
-            Kvalitet i hvert prosjekt
-            <span className="bg-current h-px w-12 opacity-40" aria-hidden />
-          </span>
-        ) : null}
+      <Logomark className="h-16 w-16" decorative />
+      <span
+        className="text-xl font-bold tracking-[0.2em] uppercase md:text-2xl"
+        style={{ fontFamily: WORDMARK_FONT, color: BRAND_GREEN }}
+      >
+        Leganger Bygg AS
       </span>
+      {variant === 'full' ? (
+        <span className="text-muted-foreground mt-2 flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase">
+          <span className="bg-current h-px w-12 opacity-40" aria-hidden />
+          Kvalitet i hvert prosjekt
+          <span className="bg-current h-px w-12 opacity-40" aria-hidden />
+        </span>
+      ) : null}
     </span>
   )
 }
@@ -68,41 +81,52 @@ type LogomarkProps = {
   title?: string
   /** Når sant, marken er rent dekorativ og skjules for skjermlesere */
   decorative?: boolean
+  /** L- og B-strøkene (standard: merkegrønn) */
+  primary?: string
+  /** Takstrøket (standard: oker) */
+  accent?: string
 }
 
 /**
- * Marken alene — TR-monogram med hustak og pipe. Tegnet fra det offisielle
- * Troas Bygg-logo-designet. Bruker currentColor for å arve farge fra
- * containeren. ViewBox 360x240 (3:2-aspekt).
+ * Marken alene — L + hustak + B-monogram. Tegnet fra det offisielle
+ * Leganger Bygg AS-logo-designet. Kvadratisk viewBox sentrert om merket.
  */
-export function Logomark({ className, title, decorative = false }: LogomarkProps) {
+export function Logomark({
+  className,
+  title,
+  decorative = false,
+  primary = BRAND_GREEN,
+  accent = BRAND_OCHRE,
+}: LogomarkProps) {
   return (
     <svg
-      viewBox="360 110 360 240"
+      viewBox="50 10 120 120"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      stroke="currentColor"
-      strokeWidth={18}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeWidth={6}
       aria-hidden={decorative ? 'true' : undefined}
       role={decorative ? undefined : 'img'}
-      className={cn('text-current', className)}
+      className={cn(className)}
     >
       {!decorative && title ? <title>{title}</title> : null}
-      {/* T — topp og stamme */}
-      <path d="M370 120 L560 120" />
-      <path d="M465 120 L465 260" />
-      {/* R — stamme, bue og diagonal */}
-      <path d="M560 120 L560 280" />
-      <path d="M560 120 Q700 120 700 190 Q700 250 620 250" />
-      <path d="M620 250 L710 340" />
-      {/* Tak — chevron over monogrammet */}
-      <path d="M410 320 L535 220 L660 320" />
-      {/* Pipe med vindu-detalj */}
-      <rect x="515" y="300" width="40" height="40" />
-      <line x1="535" y1="300" x2="535" y2="340" />
-      <line x1="515" y1="320" x2="555" y2="320" />
+      <g transform="translate(60, 30)">
+        {/* L */}
+        <path d="M 10 10 L 10 80 L 50 80" stroke={primary} strokeLinecap="square" />
+        {/* Hustak over */}
+        <path
+          d="M 0 25 L 35 0 L 70 25"
+          stroke={accent}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* B integrert */}
+        <path
+          d="M 60 10 L 60 80 L 85 80 Q 100 80 100 65 Q 100 50 85 50 L 60 50 M 85 50 Q 98 50 98 35 Q 98 20 85 20 L 60 20"
+          stroke={primary}
+          strokeLinecap="square"
+          strokeLinejoin="miter"
+        />
+      </g>
     </svg>
   )
 }

@@ -7,7 +7,7 @@ import { services } from '@/lib/services'
 export const metadata: Metadata = {
   title: 'Tjenester',
   description:
-    'Nybygg, totalrenovering, rehabilitering, flipp og prosjektledelse. Tømrer Ronny Osvaag AS leverer kvalitet i hvert prosjekt.',
+    'Nybygg, totalrenovering, rehabilitering, flipp og prosjektledelse. Leganger Bygg AS leverer kvalitet i hvert prosjekt.',
 }
 
 export default function TjenesterPage() {

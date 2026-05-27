@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Om oss',
   description:
-    'Tømrer Ronny Osvaag AS — håndverk som tåler tid og bruk. Vi tar ansvar for hele prosjektet, fra første tegning til ferdig overlevering.',
+    'Leganger Bygg AS — håndverk som tåler tid og bruk. Vi tar ansvar for hele prosjektet, fra første tegning til ferdig overlevering.',
 }
 
 const values = [
@@ -48,7 +48,7 @@ export default function OmOssPage() {
             tåler tid og bruk.
           </h1>
           <p className="text-muted-foreground mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Tømrer Ronny Osvaag AS ble grunnlagt med ett mål: å levere bygg du fortsatt er
+            Leganger Bygg AS ble grunnlagt med ett mål: å levere bygg du fortsatt er
             fornøyd med ti år senere. Vi tar ikke flere prosjekter enn vi kan følge tett selv.
           </p>
         </div>

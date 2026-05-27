@@ -1,5 +1,5 @@
 /**
- * Tjenester Troas Bygg tilbyr. Statisk innhold — endres ved å redigere
+ * Tjenester Leganger Bygg AS tilbyr. Statisk innhold — endres ved å redigere
  * denne fila og deploye. Slug-feltet brukes som URL-segment under
  * /tjenester/[slug].
  *

@@ -43,7 +43,7 @@ export function SiteFooter() {
               Kontakt
             </h3>
             <ul className="text-foreground/80 space-y-3 text-sm">
-              <li>Tømrer Ronny Osvaag AS</li>
+              <li>Leganger Bygg AS</li>
               <li className="text-muted-foreground text-xs">
                 Telefon og e-post legges inn senere
               </li>
@@ -53,7 +53,7 @@ export function SiteFooter() {
 
         <div className="border-border mt-16 flex flex-col gap-3 border-t pt-8 md:flex-row md:items-center md:justify-between">
           <p className="text-muted-foreground text-xs">
-            © {year} Tømrer Ronny Osvaag AS. Alle rettigheter reservert.
+            © {year} Leganger Bygg AS. Alle rettigheter reservert.
           </p>
           <p className="text-muted-foreground font-mono text-[10px] tracking-[0.3em] uppercase">
             Kvalitet i hvert prosjekt

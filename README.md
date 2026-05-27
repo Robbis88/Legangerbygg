@@ -1,6 +1,6 @@
-# Troas Bygg
+# Leganger Bygg AS
 
-Premium webplattform og driftssystem for **Tømrer Ronny Osvaag AS** i Bergen.
+Premium webplattform og driftssystem for **Leganger Bygg AS** i Bergen.
 
 **Domene:** [troasbygg.no](https://troasbygg.no)
 
@@ -88,4 +88,4 @@ Se [DEPLOY.md](./DEPLOY.md).
 
 ## Lisens
 
-Privat — © Tømrer Ronny Osvaag AS.
+Privat — © Leganger Bygg AS.

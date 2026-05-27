@@ -7,7 +7,7 @@ import { getPublishedReviews, type ReviewListItem } from '@/lib/queries/reviews'
 export const metadata: Metadata = {
   title: 'Anmeldelser',
   description:
-    'Det kundene våre sier om Tømrer Ronny Osvaag AS — anmeldelser fra nybygg, totalrenoveringer og flipp-prosjekter i Bergen.',
+    'Det kundene våre sier om Leganger Bygg AS — anmeldelser fra nybygg, totalrenoveringer og flipp-prosjekter i Bergen.',
 }
 
 export default async function AnmeldelserPage() {

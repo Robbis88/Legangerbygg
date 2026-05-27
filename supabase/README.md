@@ -1,6 +1,6 @@
 # Supabase
 
-Database-skjema og migreringer for Troas Bygg.
+Database-skjema og migreringer for Leganger Bygg AS.
 
 ## Migreringer
 

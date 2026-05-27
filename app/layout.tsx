@@ -16,18 +16,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://troasbygg.no'),
   title: {
-    default: 'Troas Bygg — Tømrer Ronny Osvaag AS',
-    template: '%s — Troas Bygg',
+    default: 'Leganger Bygg AS',
+    template: '%s — Leganger Bygg AS',
   },
   description:
-    'Tømrer Ronny Osvaag AS leverer nybygg, totalrenovering og prosjektledelse med kompromissløs kvalitet. Kvalitet i hvert prosjekt.',
-  applicationName: 'Troas Bygg',
-  authors: [{ name: 'Tømrer Ronny Osvaag AS' }],
+    'Leganger Bygg AS leverer nybygg, totalrenovering og prosjektledelse med kompromissløs kvalitet. Kvalitet i hvert prosjekt.',
+  applicationName: 'Leganger Bygg AS',
+  authors: [{ name: 'Leganger Bygg AS' }],
   openGraph: {
     type: 'website',
     locale: 'nb_NO',
     url: 'https://troasbygg.no',
-    siteName: 'Troas Bygg',
+    siteName: 'Leganger Bygg AS',
   },
 }
 
