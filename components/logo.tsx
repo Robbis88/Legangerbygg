@@ -20,7 +20,7 @@ const WORDMARK_FONT = 'Georgia, "Times New Roman", serif'
  * Leganger Bygg AS-logo.
  *
  * Varianter:
- * - mark: kun L+tak+B-monogrammet (favicon-klar, kvadratisk)
+ * - mark: kun hus-/L-merket (favicon-klar, kvadratisk)
  * - compact: mark + "LEGANGER BYGG AS" inline (header)
  * - stacked: mark over wordmark (footer, om-sider)
  * - full: stacked + tagline "KVALITET I HVERT PROSJEKT" (hero, splash)
@@ -88,8 +88,8 @@ type LogomarkProps = {
 }
 
 /**
- * Marken alene — L + hustak + B-monogram. Tegnet fra det offisielle
- * Leganger Bygg AS-logo-designet. Kvadratisk viewBox sentrert om merket.
+ * Marken alene — et hus/gavl der venstre vegg og gulv danner en L, kronet
+ * av en taklinje i oker. Kvadratisk viewBox, favicon-klar.
  */
 export function Logomark({
   className,
@@ -100,33 +100,21 @@ export function Logomark({
 }: LogomarkProps) {
   return (
     <svg
-      viewBox="50 10 120 120"
+      viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      strokeWidth={6}
+      strokeWidth={8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden={decorative ? 'true' : undefined}
       role={decorative ? undefined : 'img'}
       className={cn(className)}
     >
       {!decorative && title ? <title>{title}</title> : null}
-      <g transform="translate(60, 30)">
-        {/* L */}
-        <path d="M 10 10 L 10 80 L 50 80" stroke={primary} strokeLinecap="square" />
-        {/* Hustak over */}
-        <path
-          d="M 0 25 L 35 0 L 70 25"
-          stroke={accent}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        {/* B integrert */}
-        <path
-          d="M 60 10 L 60 80 L 85 80 Q 100 80 100 65 Q 100 50 85 50 L 60 50 M 85 50 Q 98 50 98 35 Q 98 20 85 20 L 60 20"
-          stroke={primary}
-          strokeLinecap="square"
-          strokeLinejoin="miter"
-        />
-      </g>
+      {/* Tak (gavl) i oker */}
+      <path d="M 18 38 L 50 14 L 82 38" stroke={accent} />
+      {/* L — venstre vegg og gulv */}
+      <path d="M 32 30 L 32 80 L 74 80" stroke={primary} />
     </svg>
   )
 }

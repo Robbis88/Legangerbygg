@@ -67,20 +67,17 @@ export default async function OgImage() {
           </div>
 
           {/* Leganger-merke inline SVG (hvitt på mørk bakgrunn) */}
-          <svg width="200" height="200" viewBox="50 10 120 120" fill="none" strokeWidth={6}>
-            <path d="M 70 40 L 70 110 L 110 110" stroke="#ffffff" strokeLinecap="square" />
-            <path
-              d="M 60 55 L 95 30 L 130 55"
-              stroke="#C9842B"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M 120 40 L 120 110 L 145 110 Q 160 110 160 95 Q 160 80 145 80 L 120 80 M 145 80 Q 158 80 158 65 Q 158 50 145 50 L 120 50"
-              stroke="#ffffff"
-              strokeLinecap="square"
-              strokeLinejoin="miter"
-            />
+          <svg
+            width="200"
+            height="200"
+            viewBox="0 0 100 100"
+            fill="none"
+            strokeWidth={8}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M 18 38 L 50 14 L 82 38" stroke="#C9842B" />
+            <path d="M 32 30 L 32 80 L 74 80" stroke="#ffffff" />
           </svg>
         </div>
       </div>
