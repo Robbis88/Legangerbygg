@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { getAdminProjectById } from '@/lib/queries/admin'
 import { ProjectForm } from '@/components/admin/project-form'
 import { ProjectEconomy } from '@/components/admin/project-economy'
+import { ProjectDocuments } from '@/components/admin/project-documents'
 
 export const metadata: Metadata = {
   title: 'Rediger prosjekt',
@@ -24,6 +25,7 @@ export default async function RedigerProsjektPage({
       <h1 className="text-3xl font-semibold tracking-tight">Rediger prosjekt</h1>
       <ProjectForm project={project} />
       <ProjectEconomy projectId={project.id} />
+      <ProjectDocuments projectId={project.id} />
     </div>
   )
 }

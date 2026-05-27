@@ -1,22 +1,35 @@
 import { getProjectLaborSummary } from '@/lib/queries/timer'
+import { getProjectMaterialTotal } from '@/lib/queries/documents'
 import { formatNok, formatHours } from '@/lib/payroll'
+import { cn } from '@/lib/utils'
 
 /**
- * Viser arbeidskost per prosjekt: timer og reell kost (inkl. feriepenger,
- * pensjon og arbeidsgiveravgift) per ansatt, samt totalsum.
+ * Prosjektøkonomi: arbeidskost (timer × lønnskost) + materialkost (kvitteringer
+ * og faktura) = total prosjektkostnad.
  */
 export async function ProjectEconomy({ projectId }: { projectId: string }) {
-  const { settings, lines, total } = await getProjectLaborSummary(projectId)
+  const [{ settings, lines, total }, materialTotal] = await Promise.all([
+    getProjectLaborSummary(projectId),
+    getProjectMaterialTotal(projectId),
+  ])
+  const grandTotal = total.total + materialTotal
 
   return (
-    <section className="border-border bg-background space-y-5 rounded-2xl border p-6">
-      <div className="flex items-baseline justify-between gap-4">
-        <h2 className="text-lg font-semibold tracking-tight">Arbeidskost</h2>
-        <p className="text-muted-foreground text-xs">
-          AGA {settings.employer_tax_pct} % · feriepenger {settings.holiday_pay_pct} % · pensjon{' '}
-          {settings.pension_pct} %
-        </p>
+    <div className="space-y-4">
+      <div className="grid gap-4 sm:grid-cols-3">
+        <SummaryCard label="Arbeidskost" value={formatNok(total.total)} />
+        <SummaryCard label="Materialkost" value={formatNok(materialTotal)} />
+        <SummaryCard label="Sum prosjekt" value={formatNok(grandTotal)} highlight />
       </div>
+
+      <section className="border-border bg-background space-y-5 rounded-2xl border p-6">
+        <div className="flex items-baseline justify-between gap-4">
+          <h2 className="text-lg font-semibold tracking-tight">Arbeidskost</h2>
+          <p className="text-muted-foreground text-xs">
+            AGA {settings.employer_tax_pct} % · feriepenger {settings.holiday_pay_pct} % · pensjon{' '}
+            {settings.pension_pct} %
+          </p>
+        </div>
 
       {lines.length === 0 ? (
         <p className="text-muted-foreground text-sm">
@@ -62,6 +75,29 @@ export async function ProjectEconomy({ projectId }: { projectId: string }) {
           </p>
         </div>
       )}
-    </section>
+      </section>
+    </div>
+  )
+}
+
+function SummaryCard({
+  label,
+  value,
+  highlight,
+}: {
+  label: string
+  value: string
+  highlight?: boolean
+}) {
+  return (
+    <div
+      className={cn(
+        'rounded-2xl border p-5',
+        highlight ? 'border-foreground bg-foreground text-background' : 'border-border bg-background',
+      )}
+    >
+      <p className={cn('text-xs', highlight ? 'opacity-70' : 'text-muted-foreground')}>{label}</p>
+      <p className="mt-2 text-2xl font-semibold tabular-nums">{value}</p>
+    </div>
   )
 }

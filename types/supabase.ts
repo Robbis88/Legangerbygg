@@ -298,6 +298,58 @@ export type Database = {
         }
         Relationships: []
       }
+      project_documents: {
+        Row: {
+          id: string
+          project_id: string
+          kind: Database['public']['Enums']['document_kind']
+          supplier: string | null
+          amount: number | null
+          doc_date: string | null
+          note: string | null
+          storage_path: string
+          file_name: string | null
+          mime_type: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          project_id: string
+          kind?: Database['public']['Enums']['document_kind']
+          supplier?: string | null
+          amount?: number | null
+          doc_date?: string | null
+          note?: string | null
+          storage_path: string
+          file_name?: string | null
+          mime_type?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          project_id?: string
+          kind?: Database['public']['Enums']['document_kind']
+          supplier?: string | null
+          amount?: number | null
+          doc_date?: string | null
+          note?: string | null
+          storage_path?: string
+          file_name?: string | null
+          mime_type?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'project_documents_project_id_fkey'
+            columns: ['project_id']
+            referencedRelation: 'projects'
+            referencedColumns: ['id']
+          },
+        ]
+      }
     }
     Views: { [key: string]: never }
     Functions: {
@@ -326,6 +378,7 @@ export type Database = {
         | 'annet'
       project_status: 'planlegging' | 'pagaende' | 'pa_vent' | 'ferdig'
       inquiry_status: 'ny' | 'behandlet'
+      document_kind: 'kvittering' | 'faktura' | 'annet'
     }
     CompositeTypes: { [key: string]: never }
   }
