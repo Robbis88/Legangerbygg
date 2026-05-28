@@ -366,6 +366,10 @@ export type Database = {
           vat_rate: number
           valid_until: string | null
           sent_at: string | null
+          public_token: string | null
+          signed_at: string | null
+          signed_name: string | null
+          signed_ip: string | null
           created_at: string
           updated_at: string
         }
@@ -384,6 +388,10 @@ export type Database = {
           vat_rate?: number
           valid_until?: string | null
           sent_at?: string | null
+          public_token?: string | null
+          signed_at?: string | null
+          signed_name?: string | null
+          signed_ip?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -402,6 +410,10 @@ export type Database = {
           vat_rate?: number
           valid_until?: string | null
           sent_at?: string | null
+          public_token?: string | null
+          signed_at?: string | null
+          signed_name?: string | null
+          signed_ip?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -447,6 +459,55 @@ export type Database = {
             foreignKeyName: 'quote_items_quote_id_fkey'
             columns: ['quote_id']
             referencedRelation: 'quotes'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      project_log: {
+        Row: {
+          id: string
+          project_id: string
+          author_id: string | null
+          author_name: string | null
+          entry_date: string
+          body: string
+          photo_paths: string[]
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          project_id: string
+          author_id?: string | null
+          author_name?: string | null
+          entry_date?: string
+          body?: string
+          photo_paths?: string[]
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          project_id?: string
+          author_id?: string | null
+          author_name?: string | null
+          entry_date?: string
+          body?: string
+          photo_paths?: string[]
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'project_log_project_id_fkey'
+            columns: ['project_id']
+            referencedRelation: 'projects'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'project_log_author_id_fkey'
+            columns: ['author_id']
+            referencedRelation: 'profiles'
             referencedColumns: ['id']
           },
         ]

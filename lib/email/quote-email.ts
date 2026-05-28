@@ -24,6 +24,7 @@ export type QuoteEmailArgs = {
   vatRate: number
   validUntil: string | null
   items: (QuoteItemInput & { unit: string | null })[]
+  signingUrl?: string | null
 }
 
 export function renderQuoteEmail(args: QuoteEmailArgs): { subject: string; html: string; text: string } {
@@ -63,6 +64,15 @@ export function renderQuoteEmail(args: QuoteEmailArgs): { subject: string; html:
           <p style="margin:0 0 6px;">Hei ${escapeHtml(args.customerName)},</p>
           ${args.intro ? `<p style="margin:0;">${nl2br(args.intro)}</p>` : '<p style="margin:0;">Her er tilbudet du etterspurte. Si fra om noe er uklart eller skal justeres.</p>'}
         </td></tr>
+
+        ${
+          args.signingUrl
+            ? `<tr><td style="padding:18px 36px 4px;">
+                 <a href="${escapeHtml(args.signingUrl)}" style="display:inline-block;background:#2C3E2D;color:#ffffff;text-decoration:none;padding:14px 22px;border-radius:10px;font-size:14px;font-weight:600;letter-spacing:0.02em;">Se og godkjenn tilbudet</a>
+                 <p style="margin:8px 0 0;font-size:12px;color:#8b8b8b;">Du kan ogsaa svare paa denne e-posten om noe skal justeres.</p>
+               </td></tr>`
+            : ''
+        }
 
         <tr><td style="padding:16px 36px 8px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">

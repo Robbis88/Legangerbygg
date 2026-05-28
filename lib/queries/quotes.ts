@@ -1,6 +1,7 @@
 import 'server-only'
 
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { computeQuoteTotals, type QuoteItemInput } from '@/lib/quote'
 import type { Database } from '@/types/supabase'
 
@@ -58,6 +59,40 @@ export async function getQuoteById(id: string): Promise<QuoteDetail | null> {
     .from('quote_items')
     .select('*')
     .eq('quote_id', id)
+    .order('sort_order', { ascending: true })
+
+  const rows = items ?? []
+  return {
+    ...quote,
+    vat_rate: Number(quote.vat_rate),
+    itemRows: rows,
+    items: rows.map((i) => ({
+      description: i.description,
+      quantity: Number(i.quantity),
+      unit: i.unit,
+      unit_price: Number(i.unit_price),
+    })),
+  }
+}
+
+/**
+ * Henter et tilbud via offentlig token (bypasser RLS via service-role siden
+ * kunden ikke er autentisert — token-en er aksesskontrollen).
+ */
+export async function getQuoteByToken(token: string): Promise<QuoteDetail | null> {
+  if (!token) return null
+  const admin = createAdminClient()
+  const { data: quote } = await admin
+    .from('quotes')
+    .select('*')
+    .eq('public_token', token)
+    .maybeSingle()
+  if (!quote) return null
+
+  const { data: items } = await admin
+    .from('quote_items')
+    .select('*')
+    .eq('quote_id', quote.id)
     .order('sort_order', { ascending: true })
 
   const rows = items ?? []

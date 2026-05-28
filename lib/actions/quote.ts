@@ -2,14 +2,19 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
+import { z } from 'zod'
 import { Resend } from 'resend'
 
 import { requireStaff } from '@/lib/auth'
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { quoteSchema } from '@/lib/validators/quote'
 import { generateQuoteNumber } from '@/lib/queries/quotes'
 import { renderQuoteEmail } from '@/lib/email/quote-email'
+import { renderSigningNotification } from '@/lib/email/signing-notification'
 import { quoteStatusValues } from '@/lib/quote'
+import { quoteSigningUrl, siteUrl } from '@/lib/site-url'
 import type { Database } from '@/types/supabase'
 
 type QuoteStatus = Database['public']['Enums']['quote_status']
@@ -188,6 +193,22 @@ export async function sendQuote(_prev: SendResult | null, formData: FormData): P
     unit_price: Number(i.unit_price),
   }))
 
+  // Sørg for at tilbudet har en offentlig token, slik at vi kan dele en
+  // signerings-URL i e-posten. Token-en er aksesskontrollen til /tilbud/[token].
+  let token = quote.public_token
+  if (!token) {
+    token = crypto.randomUUID()
+    const { error: tokError } = await supabase
+      .from('quotes')
+      .update({ public_token: token })
+      .eq('id', id)
+    if (tokError) {
+      console.error('[sendQuote.tokenUpdate]', tokError)
+      return { ok: false, error: 'Kunne ikke generere signeringslenke.' }
+    }
+  }
+  const signingUrl = quoteSigningUrl(token)
+
   const { subject, html, text } = renderQuoteEmail({
     quoteNumber: quote.quote_number,
     title: quote.title,
@@ -197,6 +218,7 @@ export async function sendQuote(_prev: SendResult | null, formData: FormData): P
     vatRate: Number(quote.vat_rate),
     validUntil: quote.valid_until,
     items,
+    signingUrl,
   })
 
   try {
@@ -228,3 +250,85 @@ export async function sendQuote(_prev: SendResult | null, formData: FormData): P
   revalidatePath('/admin/tilbud')
   return { ok: true, message: `Tilbudet er sendt til ${quote.customer_email}.` }
 }
+
+// =====================================================================
+// Offentlig signering: kalles fra /tilbud/[token] uten innlogging.
+// Bruker service-role; token-en er aksesskontrollen.
+// =====================================================================
+
+const signSchema = z.object({
+  token: z.string().min(8),
+  name: z.string().trim().min(2, 'Skriv inn fullt navn').max(160),
+  accept: z.preprocess((v) => v === 'on' || v === 'true' || v === true, z.boolean()),
+})
+
+export type SignActionResult = { ok: true } | { ok: false; error: string } | null
+
+export async function signQuote(
+  _prev: SignActionResult,
+  formData: FormData,
+): Promise<SignActionResult> {
+  const parsed = signSchema.safeParse({
+    token: formData.get('token'),
+    name: formData.get('name'),
+    accept: formData.get('accept'),
+  })
+  if (!parsed.success) {
+    return { ok: false, error: parsed.error.issues[0]?.message ?? 'Skjemaet inneholder feil.' }
+  }
+  if (!parsed.data.accept) {
+    return { ok: false, error: 'Du må krysse av for at du godkjenner tilbudet.' }
+  }
+
+  const admin = createAdminClient()
+  const { data: quote } = await admin
+    .from('quotes')
+    .select('id, quote_number, title, signed_at')
+    .eq('public_token', parsed.data.token)
+    .maybeSingle()
+  if (!quote) return { ok: false, error: 'Fant ikke tilbudet. Lenken kan være feil.' }
+  if (quote.signed_at) return { ok: false, error: 'Tilbudet er allerede godkjent.' }
+
+  const hdrs = await headers()
+  const forwarded = hdrs.get('x-forwarded-for') ?? ''
+  const ip = forwarded.split(',')[0]?.trim() || hdrs.get('x-real-ip') || null
+  const signedAt = new Date().toISOString()
+
+  const { error } = await admin
+    .from('quotes')
+    .update({
+      status: 'akseptert',
+      signed_at: signedAt,
+      signed_name: parsed.data.name,
+      signed_ip: ip,
+    })
+    .eq('id', quote.id)
+  if (error) {
+    console.error('[signQuote.update]', error)
+    return { ok: false, error: 'Kunne ikke lagre godkjenningen. Prøv igjen.' }
+  }
+
+  // Beste-innsats: varsle admin via Resend dersom det er konfigurert.
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.RESEND_FROM_EMAIL
+  const adminTo = process.env.RESEND_TO_INQUIRY || from
+  if (apiKey && from && adminTo) {
+    try {
+      const { subject, html, text } = renderSigningNotification({
+        quoteNumber: quote.quote_number,
+        title: quote.title,
+        signedName: parsed.data.name,
+        signedAt,
+        adminUrl: `${siteUrl()}/admin/tilbud/${quote.id}`,
+      })
+      await new Resend(apiKey).emails.send({ from, to: adminTo, subject, html, text })
+    } catch (err) {
+      console.error('[signQuote.notify]', err)
+    }
+  }
+
+  revalidatePath(`/tilbud/${parsed.data.token}`)
+  revalidatePath(`/admin/tilbud/${quote.id}`)
+  return { ok: true }
+}
+

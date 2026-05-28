@@ -15,6 +15,8 @@ import { QuoteForm } from '@/components/admin/quote-form'
 import { QuoteSendForm } from '@/components/admin/quote-actions'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { quoteSigningUrl } from '@/lib/site-url'
+import { CheckCircle2, ExternalLink } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Rediger tilbud',
@@ -72,6 +74,43 @@ export default async function RedigerTilbudPage({
           hasEmail={Boolean(quote.customer_email)}
           alreadySent={quote.status === 'sendt' || quote.status === 'akseptert'}
         />
+
+        {quote.signed_at ? (
+          <div className="border-emerald-500/30 bg-emerald-500/10 flex items-start gap-3 rounded-xl border p-4">
+            <CheckCircle2 className="mt-0.5 size-5 text-emerald-700" />
+            <div className="text-sm">
+              <p className="font-semibold text-emerald-900">Godkjent av {quote.signed_name}</p>
+              <p className="text-emerald-900/80 text-xs">
+                {new Intl.DateTimeFormat('nb-NO', {
+                  dateStyle: 'long',
+                  timeStyle: 'short',
+                  timeZone: 'Europe/Oslo',
+                }).format(new Date(quote.signed_at))}
+                {quote.signed_ip ? ` · IP ${quote.signed_ip}` : ''}
+              </p>
+            </div>
+          </div>
+        ) : quote.public_token ? (
+          <div className="border-border bg-muted/30 space-y-2 rounded-xl border p-4">
+            <p className="text-muted-foreground text-xs font-mono tracking-[0.2em] uppercase">
+              Godkjenningslenke
+            </p>
+            <p className="text-sm break-all">{quoteSigningUrl(quote.public_token)}</p>
+            <a
+              href={quoteSigningUrl(quote.public_token)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'gap-1.5')}
+            >
+              <ExternalLink className="size-3.5" />
+              Åpne kundevisning
+            </a>
+          </div>
+        ) : (
+          <p className="text-muted-foreground text-xs">
+            Godkjenningslenke opprettes automatisk når du sender tilbudet.
+          </p>
+        )}
 
         <div className="border-border flex flex-wrap items-center gap-3 border-t pt-4">
           <form action={setQuoteStatus} className="flex items-center gap-2">
