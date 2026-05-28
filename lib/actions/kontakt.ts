@@ -1,10 +1,9 @@
 'use server'
 
-import { Resend } from 'resend'
-
 import { createAdminClient } from '@/lib/supabase/admin'
 import { inquirySchema } from '@/lib/validators/inquiry'
 import { renderInquiryNotification } from '@/lib/email/inquiry-notification'
+import { sendMail, inquiryRecipient } from '@/lib/email/transport'
 
 export type SubmitInquiryResult =
   | { ok: true; id: string }
@@ -92,16 +91,12 @@ async function sendInquiryNotification(args: {
   inquiryId: string
   receivedAt: string
 }) {
-  const apiKey = process.env.RESEND_API_KEY
-  const from = process.env.RESEND_FROM_EMAIL
-  const to = process.env.RESEND_TO_INQUIRY
-
-  if (!apiKey || !from || !to) {
-    console.warn('[submitInquiry] Resend ikke konfigurert — henvendelse er lagret, men varsel ikke sendt')
+  const to = inquiryRecipient()
+  if (!to) {
+    console.warn('[submitInquiry] SMTP ikke konfigurert — henvendelse lagret, men varsel ikke sendt')
     return
   }
 
-  const resend = new Resend(apiKey)
   const { subject, html, text } = renderInquiryNotification({
     inquiry: args.inquiry,
     inquiryId: args.inquiryId,
@@ -112,12 +107,5 @@ async function sendInquiryNotification(args: {
     }).format(new Date(args.receivedAt)),
   })
 
-  await resend.emails.send({
-    from,
-    to,
-    replyTo: args.inquiry.email,
-    subject,
-    html,
-    text,
-  })
+  await sendMail({ to, replyTo: args.inquiry.email, subject, html, text })
 }

@@ -4,7 +4,6 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { headers } from 'next/headers'
 import { z } from 'zod'
-import { Resend } from 'resend'
 
 import { requireStaff } from '@/lib/auth'
 import { createClient } from '@/lib/supabase/server'
@@ -13,6 +12,7 @@ import { quoteSchema } from '@/lib/validators/quote'
 import { generateQuoteNumber } from '@/lib/queries/quotes'
 import { renderQuoteEmail } from '@/lib/email/quote-email'
 import { renderSigningNotification } from '@/lib/email/signing-notification'
+import { sendMail, mailFrom, inquiryRecipient, isMailConfigured } from '@/lib/email/transport'
 import { quoteStatusValues } from '@/lib/quote'
 import { quoteSigningUrl, siteUrl } from '@/lib/site-url'
 import type { Database } from '@/types/supabase'
@@ -165,14 +165,13 @@ export async function sendQuote(_prev: SendResult | null, formData: FormData): P
   const id = formData.get('id')
   if (typeof id !== 'string') return { ok: false, error: 'Mangler tilbuds-id.' }
 
-  const apiKey = process.env.RESEND_API_KEY
-  const from = process.env.RESEND_FROM_EMAIL
-  if (!apiKey || !from) {
+  if (!isMailConfigured()) {
     return {
       ok: false,
-      error: 'Resend er ikke konfigurert. Sett RESEND_FROM_EMAIL (verifisert avsender) og last på nytt.',
+      error: 'E-post er ikke konfigurert. Sett SMTP_HOST/PORT/USER/PASSWORD og MAIL_FROM på Vercel.',
     }
   }
+  const replyTo = mailFrom() ?? undefined
 
   const supabase = await createClient()
   const { data: quote } = await supabase.from('quotes').select('*').eq('id', id).maybeSingle()
@@ -221,23 +220,21 @@ export async function sendQuote(_prev: SendResult | null, formData: FormData): P
     signingUrl,
   })
 
-  try {
-    const resend = new Resend(apiKey)
-    const { error } = await resend.emails.send({
-      from,
-      to: quote.customer_email,
-      replyTo: from,
-      subject,
-      html,
-      text,
-    })
-    if (error) {
-      console.error('[sendQuote.resend]', error)
-      return { ok: false, error: `Resend-feil: ${error.message ?? 'ukjent feil'}` }
+  const result = await sendMail({
+    to: quote.customer_email,
+    replyTo,
+    subject,
+    html,
+    text,
+  })
+  if (!result.ok) {
+    return {
+      ok: false,
+      error:
+        result.reason === 'not-configured'
+          ? 'E-post er ikke konfigurert.'
+          : `E-postutsending feilet: ${result.error ?? 'ukjent feil'}`,
     }
-  } catch (err) {
-    console.error('[sendQuote.catch]', err)
-    return { ok: false, error: 'Sending feilet. Sjekk konfigurasjonen.' }
   }
 
   const { error: upError } = await supabase
@@ -308,23 +305,19 @@ export async function signQuote(
     return { ok: false, error: 'Kunne ikke lagre godkjenningen. Prøv igjen.' }
   }
 
-  // Beste-innsats: varsle admin via Resend dersom det er konfigurert.
-  const apiKey = process.env.RESEND_API_KEY
-  const from = process.env.RESEND_FROM_EMAIL
-  const adminTo = process.env.RESEND_TO_INQUIRY || from
-  if (apiKey && from && adminTo) {
-    try {
-      const { subject, html, text } = renderSigningNotification({
-        quoteNumber: quote.quote_number,
-        title: quote.title,
-        signedName: parsed.data.name,
-        signedAt,
-        adminUrl: `${siteUrl()}/admin/tilbud/${quote.id}`,
-      })
-      await new Resend(apiKey).emails.send({ from, to: adminTo, subject, html, text })
-    } catch (err) {
-      console.error('[signQuote.notify]', err)
-    }
+  // Beste-innsats: varsle admin via SMTP hvis konfigurert.
+  const adminTo = inquiryRecipient()
+  if (adminTo && isMailConfigured()) {
+    const { subject, html, text } = renderSigningNotification({
+      quoteNumber: quote.quote_number,
+      title: quote.title,
+      signedName: parsed.data.name,
+      signedAt,
+      adminUrl: `${siteUrl()}/admin/tilbud/${quote.id}`,
+    })
+    await sendMail({ to: adminTo, subject, html, text }).catch((err) =>
+      console.error('[signQuote.notify]', err),
+    )
   }
 
   revalidatePath(`/tilbud/${parsed.data.token}`)
