@@ -451,6 +451,42 @@ export type Database = {
           },
         ]
       }
+      hms_articles: {
+        Row: {
+          id: string
+          title: string
+          slug: string | null
+          category: string | null
+          body: string
+          sort_order: number
+          published: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          slug?: string | null
+          category?: string | null
+          body?: string
+          sort_order?: number
+          published?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          title?: string
+          slug?: string | null
+          category?: string | null
+          body?: string
+          sort_order?: number
+          published?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: { [key: string]: never }
     Functions: {

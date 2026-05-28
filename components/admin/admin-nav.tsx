@@ -13,8 +13,10 @@ const navItems = [
   { href: '/admin', label: 'Oversikt' },
   { href: '/admin/prosjekter', label: 'Prosjekter' },
   { href: '/admin/timer', label: 'Timer' },
+  { href: '/admin/lonn', label: 'Lønn' },
   { href: '/admin/henvendelser', label: 'Henvendelser' },
   { href: '/admin/tilbud', label: 'Tilbud' },
+  { href: '/admin/hms', label: 'HMS' },
   { href: '/admin/ansatte', label: 'Ansatte' },
 ]
 
