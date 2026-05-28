@@ -13,6 +13,8 @@ const navItems = [
   { href: '/admin', label: 'Oversikt' },
   { href: '/admin/prosjekter', label: 'Prosjekter' },
   { href: '/admin/timer', label: 'Timer' },
+  { href: '/admin/henvendelser', label: 'Henvendelser' },
+  { href: '/admin/tilbud', label: 'Tilbud' },
   { href: '/admin/ansatte', label: 'Ansatte' },
 ]
 
@@ -35,7 +37,7 @@ export function AdminNav({
   const pathname = usePathname()
 
   return (
-    <header className="border-border bg-background sticky top-0 z-30 border-b">
+    <header className="border-border bg-background sticky top-0 z-30 border-b print:hidden">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-6">
         <div className="flex items-center gap-8">
           <Link href="/admin" className="flex items-center gap-2.5" aria-label="Driftssystem">

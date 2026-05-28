@@ -10,9 +10,9 @@ export async function AdminShell({ children }: { children: React.ReactNode }) {
   const { profile, email } = await requireAdminAccess()
 
   return (
-    <div className="bg-muted/20 min-h-screen">
+    <div className="bg-muted/20 min-h-screen print:bg-white">
       <AdminNav fullName={profile.full_name} role={profile.role} email={email} />
-      <main className="mx-auto max-w-6xl px-6 py-10">{children}</main>
+      <main className="mx-auto max-w-6xl px-6 py-10 print:max-w-none print:p-0">{children}</main>
     </div>
   )
 }

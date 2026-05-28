@@ -23,7 +23,7 @@ export default async function AdminDashboardPage() {
     {
       label: 'Nye henvendelser',
       value: stats.newInquiries,
-      href: '/admin/prosjekter',
+      href: '/admin/henvendelser',
       icon: Inbox,
     },
   ]

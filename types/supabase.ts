@@ -350,6 +350,107 @@ export type Database = {
           },
         ]
       }
+      quotes: {
+        Row: {
+          id: string
+          quote_number: string | null
+          inquiry_id: string | null
+          customer_name: string
+          customer_email: string | null
+          customer_phone: string | null
+          customer_address: string | null
+          title: string
+          intro: string | null
+          notes: string | null
+          status: Database['public']['Enums']['quote_status']
+          vat_rate: number
+          valid_until: string | null
+          sent_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          quote_number?: string | null
+          inquiry_id?: string | null
+          customer_name: string
+          customer_email?: string | null
+          customer_phone?: string | null
+          customer_address?: string | null
+          title: string
+          intro?: string | null
+          notes?: string | null
+          status?: Database['public']['Enums']['quote_status']
+          vat_rate?: number
+          valid_until?: string | null
+          sent_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          quote_number?: string | null
+          inquiry_id?: string | null
+          customer_name?: string
+          customer_email?: string | null
+          customer_phone?: string | null
+          customer_address?: string | null
+          title?: string
+          intro?: string | null
+          notes?: string | null
+          status?: Database['public']['Enums']['quote_status']
+          vat_rate?: number
+          valid_until?: string | null
+          sent_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'quotes_inquiry_id_fkey'
+            columns: ['inquiry_id']
+            referencedRelation: 'inquiries'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      quote_items: {
+        Row: {
+          id: string
+          quote_id: string
+          description: string
+          quantity: number
+          unit: string | null
+          unit_price: number
+          sort_order: number
+        }
+        Insert: {
+          id?: string
+          quote_id: string
+          description: string
+          quantity?: number
+          unit?: string | null
+          unit_price?: number
+          sort_order?: number
+        }
+        Update: {
+          id?: string
+          quote_id?: string
+          description?: string
+          quantity?: number
+          unit?: string | null
+          unit_price?: number
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'quote_items_quote_id_fkey'
+            columns: ['quote_id']
+            referencedRelation: 'quotes'
+            referencedColumns: ['id']
+          },
+        ]
+      }
     }
     Views: { [key: string]: never }
     Functions: {
@@ -379,6 +480,7 @@ export type Database = {
       project_status: 'planlegging' | 'pagaende' | 'pa_vent' | 'ferdig'
       inquiry_status: 'ny' | 'behandlet'
       document_kind: 'kvittering' | 'faktura' | 'annet'
+      quote_status: 'utkast' | 'sendt' | 'akseptert' | 'avslaatt'
     }
     CompositeTypes: { [key: string]: never }
   }
