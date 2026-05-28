@@ -463,6 +463,43 @@ export type Database = {
           },
         ]
       }
+      active_punches: {
+        Row: {
+          id: string
+          profile_id: string
+          project_id: string
+          started_at: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          profile_id: string
+          project_id: string
+          started_at?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          profile_id?: string
+          project_id?: string
+          started_at?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'active_punches_profile_id_fkey'
+            columns: ['profile_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'active_punches_project_id_fkey'
+            columns: ['project_id']
+            referencedRelation: 'projects'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       project_log: {
         Row: {
           id: string
