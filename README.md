@@ -2,7 +2,7 @@
 
 Premium webplattform og driftssystem for **Leganger Bygg AS** i Bergen.
 
-**Domene:** [troasbygg.no](https://troasbygg.no)
+**Domene:** [legangerbygg.no](https://legangerbygg.no)
 
 ## Hva dette er
 

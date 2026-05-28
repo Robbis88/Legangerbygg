@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://troasbygg.no'),
+  metadataBase: new URL('https://legangerbygg.no'),
   title: {
     default: 'Leganger Bygg AS',
     template: '%s — Leganger Bygg AS',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'nb_NO',
-    url: 'https://troasbygg.no',
+    url: 'https://legangerbygg.no',
     siteName: 'Leganger Bygg AS',
   },
 }

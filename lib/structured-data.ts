@@ -4,7 +4,7 @@
  * og rich-snippets (rating, lokasjon, lenker).
  */
 
-export const SITE_URL = 'https://troasbygg.no'
+export const SITE_URL = 'https://legangerbygg.no'
 const LEGAL_NAME = 'Leganger Bygg AS'
 const BRAND_NAME = 'Leganger Bygg AS'
 

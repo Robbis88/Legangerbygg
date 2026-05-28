@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin', '/admin/', '/mobil', '/mobil/'],
       },
     ],
-    sitemap: 'https://troasbygg.no/sitemap.xml',
-    host: 'https://troasbygg.no',
+    sitemap: 'https://legangerbygg.no/sitemap.xml',
+    host: 'https://legangerbygg.no',
   }
 }

@@ -5,7 +5,7 @@ import { cacheLife, cacheTag } from 'next/cache'
 import { createPublicClient } from '@/lib/supabase/public'
 import { services } from '@/lib/services'
 
-const SITE_URL = 'https://troasbygg.no'
+const SITE_URL = 'https://legangerbygg.no'
 // Statisk sist-oppdatert-dato per build. Endre når statiske sider får større oppdateringer.
 const STATIC_LAST_MOD = '2026-05-21'
 

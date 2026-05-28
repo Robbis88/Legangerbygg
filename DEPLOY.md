@@ -22,7 +22,7 @@ auto-deploy til produksjon på Vercel.
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase Dashboard → Settings → API |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase Dashboard → Settings → API (sensitive!) |
 | `RESEND_API_KEY` | Resend Dashboard → API Keys |
-| `RESEND_FROM_EMAIL` | f.eks. `onboarding@resend.dev` (test) eller `post@troasbygg.no` (etter verifisering) |
+| `RESEND_FROM_EMAIL` | f.eks. `onboarding@resend.dev` (test) eller `post@legangerbygg.no` (etter verifisering) |
 | `RESEND_TO_INQUIRY` | Hvor henvendelser skal varsles (f.eks. `robert@kelsarbil.no`) |
 | `ANTHROPIC_API_KEY` | (Fase 4 — kan stå tom inntil videre) |
 
@@ -31,7 +31,7 @@ auto-deploy til produksjon på Vercel.
 ### 3. Domene
 
 1. På Vercel-prosjektet: **Settings → Domains**.
-2. Legg til `troasbygg.no` og `www.troasbygg.no`.
+2. Legg til `legangerbygg.no` og `www.legangerbygg.no`.
 3. Vercel viser DNS-records (`A`-record for apex og `CNAME` for `www`).
 4. Konfigurer hos domeneregistraren (Domeneshop, GoDaddy, etc).
 5. Vent på DNS-propagering (5–60 min). SSL settes automatisk.
@@ -41,17 +41,17 @@ auto-deploy til produksjon på Vercel.
 For at e-postlenker og auth-callbacks skal peke til riktig domene:
 
 1. Supabase Dashboard → Authentication → URL Configuration.
-2. Sett **Site URL** til `https://troasbygg.no`.
+2. Sett **Site URL** til `https://legangerbygg.no`.
 3. Legg til `https://*.vercel.app` i **Redirect URLs** for preview-deployments.
 
 ### 5. Resend-domeneverifisering
 
-Når troasbygg.no er live på Vercel:
+Når legangerbygg.no er live på Vercel:
 
-1. Resend Dashboard → Domains → Add Domain → `troasbygg.no`.
+1. Resend Dashboard → Domains → Add Domain → `legangerbygg.no`.
 2. Legg til DNS-records (SPF, DKIM) hos domeneregistraren.
 3. Etter verifisering kan du sette `RESEND_FROM_EMAIL` til
-   `post@troasbygg.no` (eller hva du vil) og redeploye.
+   `post@legangerbygg.no` (eller hva du vil) og redeploye.
 
 ## Neste deploy
 
