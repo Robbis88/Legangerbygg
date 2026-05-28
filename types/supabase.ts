@@ -20,6 +20,11 @@ export type Database = {
           role: Database['public']['Enums']['user_role'] | null
           active: boolean
           hourly_cost: number | null
+          title: string | null
+          avatar_path: string | null
+          bio: string | null
+          show_on_about: boolean
+          sort_order: number
           created_at: string
           updated_at: string
         }
@@ -30,6 +35,11 @@ export type Database = {
           role?: Database['public']['Enums']['user_role'] | null
           active?: boolean
           hourly_cost?: number | null
+          title?: string | null
+          avatar_path?: string | null
+          bio?: string | null
+          show_on_about?: boolean
+          sort_order?: number
           created_at?: string
           updated_at?: string
         }
@@ -40,6 +50,11 @@ export type Database = {
           role?: Database['public']['Enums']['user_role'] | null
           active?: boolean
           hourly_cost?: number | null
+          title?: string | null
+          avatar_path?: string | null
+          bio?: string | null
+          show_on_about?: boolean
+          sort_order?: number
           created_at?: string
           updated_at?: string
         }

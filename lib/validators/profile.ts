@@ -27,6 +27,10 @@ export const updateEmployeeSchema = z.object({
   role: z.enum(userRoleValues),
   hourly_cost: hourlyCost,
   active: z.preprocess((v) => v === 'on' || v === 'true' || v === true, z.boolean()),
+  title: emptyToUndefined(z.string().trim().max(80).optional()),
+  bio: emptyToUndefined(z.string().trim().max(2000).optional()),
+  show_on_about: z.preprocess((v) => v === 'on' || v === 'true' || v === true, z.boolean()),
+  sort_order: z.coerce.number().int().min(0).max(1000).default(0),
 })
 
 export const inviteEmployeeSchema = z.object({

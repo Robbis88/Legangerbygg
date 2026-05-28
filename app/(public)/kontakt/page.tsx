@@ -43,11 +43,22 @@ export default function KontaktPage() {
                   <span>Leganger Bygg AS</span>
                 </li>
                 <li className="flex flex-col">
+                  <span className="text-muted-foreground text-xs">Daglig leder</span>
+                  <span>Lasse Leganger</span>
+                </li>
+                <li className="flex flex-col">
+                  <span className="text-muted-foreground text-xs">Telefon</span>
+                  <a className="hover:underline" href="tel:+4748866516">488 66 516</a>
+                </li>
+                <li className="flex flex-col">
+                  <span className="text-muted-foreground text-xs">E-post</span>
+                  <a className="hover:underline" href="mailto:post@legangerbygg.no">
+                    post@legangerbygg.no
+                  </a>
+                </li>
+                <li className="flex flex-col">
                   <span className="text-muted-foreground text-xs">Lokasjon</span>
                   <span>Bergen</span>
-                </li>
-                <li className="text-muted-foreground text-xs">
-                  Telefon og e-post legges inn senere
                 </li>
               </ul>
             </div>

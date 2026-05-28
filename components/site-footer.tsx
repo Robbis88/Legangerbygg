@@ -42,10 +42,23 @@ export function SiteFooter() {
             <h3 className="text-muted-foreground mb-4 font-mono text-xs tracking-[0.25em] uppercase">
               Kontakt
             </h3>
-            <ul className="text-foreground/80 space-y-3 text-sm">
-              <li>Leganger Bygg AS</li>
-              <li className="text-muted-foreground text-xs">
-                Telefon og e-post legges inn senere
+            <ul className="text-foreground/80 space-y-2 text-sm">
+              <li>
+                Lasse Leganger
+                <span className="text-muted-foreground block text-xs">Daglig leder</span>
+              </li>
+              <li>
+                <a className="hover:text-foreground transition-colors" href="tel:+4748866516">
+                  488 66 516
+                </a>
+              </li>
+              <li>
+                <a
+                  className="hover:text-foreground transition-colors"
+                  href="mailto:post@legangerbygg.no"
+                >
+                  post@legangerbygg.no
+                </a>
               </li>
             </ul>
           </div>

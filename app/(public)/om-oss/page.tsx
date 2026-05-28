@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
+
+import { getTeamForAbout } from '@/lib/queries/team'
 
 export const metadata: Metadata = {
   title: 'Om oss',
@@ -34,7 +37,8 @@ const fagOgTrygghet = [
   'Faste samarbeidspartnere: rørlegger, elektriker, murer og flislegger',
 ]
 
-export default function OmOssPage() {
+export default async function OmOssPage() {
+  const team = await getTeamForAbout()
   return (
     <>
       <section className="border-border border-b px-6 pt-32 pb-20 md:pt-40 md:pb-28">
@@ -99,35 +103,50 @@ export default function OmOssPage() {
       </section>
 
       <section className="px-6 py-20 md:py-28">
-        <div className="mx-auto grid max-w-5xl gap-16 md:grid-cols-[1fr_1.4fr] md:gap-20">
-          <div>
-            <h2 className="text-muted-foreground mb-6 font-mono text-xs tracking-[0.3em] uppercase">
-              Lasse
-            </h2>
-          </div>
-          <div className="space-y-6">
-            <div className="bg-muted/40 border-border flex aspect-[4/5] w-full max-w-sm items-center justify-center rounded-2xl border">
-              <p className="text-muted-foreground font-mono text-[10px] tracking-[0.3em] uppercase">
-                Portrett kommer
-              </p>
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-muted-foreground mb-10 font-mono text-xs tracking-[0.3em] uppercase">
+            Hvem er vi
+          </h2>
+          {team.length === 0 ? (
+            <p className="text-muted-foreground text-sm">
+              Vi presenterer oss her snart. Inntil da, ring oss eller send en melding.
+            </p>
+          ) : (
+            <div className="grid gap-10 sm:grid-cols-2 md:gap-14">
+              {team.map((member) => (
+                <article key={member.id}>
+                  <div className="bg-muted/40 border-border relative aspect-[4/5] w-full overflow-hidden rounded-2xl border">
+                    {member.avatar_url ? (
+                      <Image
+                        src={member.avatar_url}
+                        alt={member.full_name ?? 'Portrett'}
+                        fill
+                        sizes="(min-width: 640px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <p className="text-muted-foreground absolute inset-0 flex items-center justify-center font-mono text-[10px] tracking-[0.3em] uppercase">
+                        Portrett kommer
+                      </p>
+                    )}
+                  </div>
+                  <h3 className="mt-6 text-2xl font-semibold tracking-tight">
+                    {member.full_name}
+                  </h3>
+                  {member.title ? (
+                    <p className="text-muted-foreground mt-1 font-mono text-[11px] tracking-[0.25em] uppercase">
+                      {member.title}
+                    </p>
+                  ) : null}
+                  {member.bio ? (
+                    <p className="text-foreground/85 mt-4 text-base leading-relaxed whitespace-pre-wrap">
+                      {member.bio}
+                    </p>
+                  ) : null}
+                </article>
+              ))}
             </div>
-            <div className="space-y-4 text-base leading-relaxed text-foreground/90 md:text-lg">
-              <p>
-                Lasse er tømrer og grunnlegger av Leganger Bygg AS. 25 år gammel, fem år i faget —
-                og en uvanlig bratt læringskurve: han har kjøpt, totalrenovert og solgt en lang
-                rekke boliger på kort tid.
-              </p>
-              <p>
-                Det har gjort ham til en spesialist på oppussing av leiligheter, rekkehus og
-                eneboliger. Han tar jobben fra A til Å og har full kontroll på fremdrift og fag.
-                Det han ikke gjør selv — våtrom, el, rør, mur og flis — løser han gjennom faste,
-                sertifiserte samarbeidspartnere.
-              </p>
-              <p className="text-muted-foreground">
-                Med på laget har han en lærling. Lite firma, mye pasjon.
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 

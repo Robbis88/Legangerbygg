@@ -115,6 +115,12 @@ function StampedInView({ active }: { active: ActivePunch }) {
         <p className="text-5xl font-semibold tabular-nums md:text-6xl">{formatElapsed(elapsed)}</p>
       </div>
 
+      {elapsed > 12 * 60 * 60 * 1000 ? (
+        <p className="rounded-xl bg-amber-500/20 px-4 py-3 text-sm text-amber-100">
+          ⚠ Du har vært stemplet inn i mer enn 12 timer. Glemte du å stemple ut sist?
+        </p>
+      ) : null}
+
       {state && !state.ok ? (
         <p className="text-sm text-rose-300" role="alert">
           {state.error}
