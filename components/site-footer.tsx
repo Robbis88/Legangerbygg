@@ -68,7 +68,19 @@ export function SiteFooter() {
           <p className="text-muted-foreground text-xs">
             © {year} Leganger Bygg AS. Alle rettigheter reservert.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <Link
+              href="/personvern"
+              className="text-muted-foreground hover:text-foreground font-mono text-[10px] tracking-[0.3em] uppercase transition-colors"
+            >
+              Personvern
+            </Link>
+            <Link
+              href="/vilkar"
+              className="text-muted-foreground hover:text-foreground font-mono text-[10px] tracking-[0.3em] uppercase transition-colors"
+            >
+              Vilkår
+            </Link>
             <Link
               href="/admin"
               className="text-muted-foreground hover:text-foreground font-mono text-[10px] tracking-[0.3em] uppercase transition-colors"
